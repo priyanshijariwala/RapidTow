@@ -19,7 +19,7 @@ router.post('/createuser', async (req, res) => {
         password: securepass
       });
       
-      // Send response
+      // Send response to server
       res.json(user);
     } else {
       res.status(400).json({ error: "Email is already used.." });
