@@ -4,13 +4,89 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
     <style>
-        body{
-            background-image: url("https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.checkatrade.com%2Fblog%2Fcost-guides%2Fvehicle-towing-cost%2F&psig=AOvVaw3HUBIj40DySSSpANMkRpFf&ust=1723044420014000&source=images&cd=vfe&opi=89978449&ved=0CA8QjRxqFwoTCKCX1fHW4IcDFQAAAAAdAAAAABAK");
-        }
+        main{
+    background-image: url("https://i.pinimg.com/564x/8e/0f/bf/8e0fbf5a63646088f67503f525716643.jpg");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: max(1500px,100vw);
+    bottom:0;
+    height:100vh;
+    position:relative;
+}
+main .box{
+    height:100vh;
+    width:100%;
+    opacity: 0.4;
+    background-color: black;
+    position: absolute;
+    top:0;
+}
+
+form{
+    margin-top: 35%;
+    border: 1px solid rgba(255,255,255,0.3);
+    background: rgba(255,255,255,0.2);
+    border-radius: 10px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.1);
+    backdrop-filter: blur(20px);
+    height: 400px;
+    /* width: 400px */
+} 
+h2{
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+input{
+    border-radius: 10px;
+    padding: 5px;
+    padding-left: 20px;
+    padding-right: 20px;
+    width: 200px;
+    margin-bottom: 20px;
+    font-size: 15px;
+}
+label{
+    font-size: larger;
+}
+#login_submit{
+    margin-top: 20px;
+    width: 80px;
+    background-color: black;
+    color: white;
+    
+}
+input:hover{
+    border-radius: 50px;
+}
+#login_submit:hover{
+    border: 2px solid white;
+    background-color: rgb(85, 85, 3);
+}
     </style>
 </head>
 <body>
+    <main>
+        <div class="box"></div>
+        <div class="row">
+            <div class="col-sm-4"></div>
+            <div class="col-sm-4 text-center">
+                <form class="form">
+                    <h2 id="login">SIGN-IN</h2>
+                    <div><label for="email">Email</label></div>
+                    <div><input id="user_name" type="text"></div>
+                    <div><label for="password">Password</label></div>
+                    <div><input id="password" type="password"></div>
+                    <!-- <div style="font-size: small;"><a href="signup.html">Don't have an account ?</a></div> -->
+                    <div><input id="login_submit" type="submit"></div>
+                    
+                </form>
+            </div>
+            <div class="col-sm-4"></div>
+        </div>
+    </main>
     
 </body>
 </html>
