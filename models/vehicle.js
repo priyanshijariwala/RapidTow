@@ -20,10 +20,11 @@ const vehicleSchema=new Schema({
         require:true,
     },
     
-    vehicle_model_name:{
-        type:String,
-        require:true,
-    },
+    // vehicle_model_name:{
+    //     type:String,
+    
+    //     require:true,
+    // },
     old_destination:{
         type:String,
         require:true,
