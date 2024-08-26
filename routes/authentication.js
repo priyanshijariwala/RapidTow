@@ -41,7 +41,7 @@ router.post("/createuser", async (req, res) => {
   }
 });
 
-router.post(
+router.get(
   "/login",
   [
     body("email", "enter a valid email").isEmail(),

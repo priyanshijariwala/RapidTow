@@ -1,5 +1,5 @@
 const express = require("express");
-const router = express.Router(); // Ahiya Router() aave
+const router = express.Router(); 
 const fetchuser = require("../middleware/fetchuser");
 const vehicle = require("../models/vehicle");
 const { body, validationResult } = require("express-validator");
@@ -15,6 +15,7 @@ router.get("/fetchallvehicle", fetchuser, async (req, res) => {
   }
 });
 
+//booking for tow
 router.post(
   "/register",
   fetchuser,
@@ -37,9 +38,9 @@ router.post(
         payment_mode,
       } = req.body;
 
-      // aama {} bracket ni karela
+      
       const new_vehicle = new vehicle({
-          user : req.user.id, // ahiya bracket
+          user : req.user.id, 
           vehicle_model_name,
           vehicle_company_name,
           vehicle_number,
@@ -57,4 +58,4 @@ router.post(
   }
 );
 
-module.exports = router; // Aa line ni lakheli
+module.exports = router; 
