@@ -1,3 +1,7 @@
-/node_modules/
-/.pnp
-.pnp.js
+/backend/node_modules/
+/backend/.pnp
+/backend/.pnp.js
+
+/frontend/node_modules/
+/frontend/.pnp
+/frontend/.pnp.js
