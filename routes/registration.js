@@ -1,5 +1,5 @@
 const express = require("express");
-const router = express.Router(); 
+const router = express.Router();
 const fetchuser = require("../middleware/fetchuser");
 const vehicle = require("../models/vehicle");
 const { body, validationResult } = require("express-validator");
@@ -38,15 +38,15 @@ router.post(
         payment_mode,
       } = req.body;
 
-      
+
       const new_vehicle = new vehicle({
-          user : req.user.id, 
-          vehicle_model_name,
-          vehicle_company_name,
-          vehicle_number,
-          old_destination,
-          new_destination,
-          payment_mode
+        user: req.user.id,
+        vehicle_model_name,
+        vehicle_company_name,
+        vehicle_number,
+        old_destination,
+        new_destination,
+        payment_mode
       }
       );
 
@@ -57,5 +57,61 @@ router.post(
     }
   }
 );
+
+//updating towing details
+
+router.put("/updatevehicle/:id", fetchuser, async (req, res) => {
+
+  const {
+    vehicle_model_name,
+    vehicle_company_name,
+    vehicle_number,
+    old_destination,
+    new_destination,
+    payment_mode,
+  } = req.body;
+
+  try {
+
+    const updatevehicle = {}
+
+    if (vehicle_model_name) { updatevehicle.vehicle_model_name = vehicle_model_name; }
+    if (vehicle_company_name) { updatevehicle.vehicle_company_name = vehicle_company_name; }
+    if (vehicle_number) { updatevehicle.vehicle_number = vehicle_number; }
+    if (old_destination) { updatevehicle.old_destination = old_destination; }
+    if (new_destination) { updatevehicle.new_destination = new_destination; }
+    if (payment_mode) { updatevehicle.payment_mode = payment_mode; }
+
+    let update_vehicle = await vehicle.findById(req.params.id);
+    if (!update_vehicle) {
+      return res.status(404).send("Not Found");
+    }
+
+    update_vehicle = await vehicle.findByIdAndUpdate(
+      req.params.id,
+      { $set: updatevehicle },
+      { new: true }
+    )
+    res.json({ update_vehicle })
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+//delete registration(cancel req)
+
+router.delete("/deletevehicle/:id",fetchuser,async(req,res)=>{
+  try{
+
+    let delete_vehicle=await vehicle.findById(req.params.id);
+    if(!delete_vehicle){
+      return res.status(404).send("Not Found");
+    }
+    delete_vehicle= await vehicle.findByIdAndDelete(req.params.id);
+    res.json({"Success" : "deleted"})
+  }catch(error){
+    console.log(error);
+  }
+  });
 
 module.exports = router; 
