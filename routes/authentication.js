@@ -91,4 +91,39 @@ router.get("/getuser", fetchuser, async (req, res) => {
   }
 });
 
+
+//updating user details
+
+router.put("/updateuser/:id", fetchuser, async (req, res) => {
+
+  const {
+    username,email,contact_no,password
+  } = req.body;
+
+  try {
+
+    const updateuser = {}
+
+    if (username) { updateuser.username = username; }
+    if (email) { updateuser.email = email; }
+    if (contact_no) { updateuser.contact_no =contact_no; }
+    if (password) { updateuser.password = password; }
+
+    let update_user = await User.findById(req.params.id);
+    if (!update_user) {
+      return res.status(404).send("Not Found");
+    }
+
+    update_user = await User.findByIdAndUpdate(
+      req.params.id,
+      { $set: updateuser },
+      { new: true }
+    )
+    res.json({ update_user })
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+
 module.exports = router;
