@@ -125,5 +125,22 @@ router.put("/updateuser/:id", fetchuser, async (req, res) => {
   }
 });
 
+//delete user
+
+
+router.delete("/deleteuser/:id",fetchuser,async(req,res)=>{
+  try{
+
+    let delete_user=await User.findById(req.params.id);
+    if(!delete_user){
+      return res.status(404).send("Not Found");
+    }
+    delete_user= await User.findByIdAndDelete(req.params.id);
+    res.json({"Success" : "deleted"})
+  }catch(error){
+    console.log(error);
+  }
+  });
+
 
 module.exports = router;
