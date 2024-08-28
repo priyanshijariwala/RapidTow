@@ -1,0 +1,42 @@
+Navbar{
+    justify-content: space-between;
+    z-index: 1;
+}
+.main{
+    background-image: url("image/truck_logo.jpg");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: max(1200px,100vw);
+    height:82vh;
+    position:relative;
+}
+.main .box{
+    height:82vh;
+    width:100%;
+    opacity: 0.7;
+    background-color: black;
+    position: absolute;
+    top:0;
+    z-index: 0;
+}
+.title{
+    height:calc(100% - 70px);
+    align-items: center;
+    justify-content: center;
+    display:flex;
+    flex-direction:column;
+    color:white;
+    position: relative;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif   ;
+    gap:20px;
+    padding:0 30px;
+}
+
+.line{
+    height: 5px;
+    background-color: grey;
+    opacity: 0.5;
+    position: relative;
+    z-index: 10;
+}
+
