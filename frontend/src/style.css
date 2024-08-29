@@ -1,6 +1,7 @@
-Navbar{
+.navbar{
     justify-content: space-between;
     z-index: 1;
+    opacity: 1;
 }
 .main{
     background-image: url("image/truck_logo.jpg");
@@ -32,11 +33,15 @@ Navbar{
     padding:0 30px;
 }
 
-.line{
+/* .line{
     height: 5px;
     background-color: grey;
     opacity: 0.5;
     position: relative;
     z-index: 10;
-}
+} */
 
+.row{
+    margin-top: 50px;
+    border:2px solid red;
+}
