@@ -10,6 +10,7 @@
     background-size: max(1200px,100vw);
     height:82vh;
     position:relative;
+    margin-bottom: 30px;
 }
 .main .box{
     height:82vh;
@@ -40,9 +41,29 @@
     position: relative;
     z-index: 10;
 } */
+#top-services,#local-provider,#services{
+    background:rgb(231, 231, 230);
+    /* border:1px solid black; */
+    border-radius: 10px;
+    margin-left:100px;
+    margin-right: 100px;
+    margin-bottom: 70px;
+    padding-top: 20px;
 
+}
 .row{
-    margin-top: 50px;
-    border:2px solid red;
+    margin-bottom: 50px;
+    margin-top: 20px;
+    padding: 20px;
     
+}
+.col{
+    justify-content: center;
+    padding-left: 70px;
+    padding-right: 70px;
+}
+.service{
+    background-color: white;
+    border-radius: 50px;
+    height:40px
 }
