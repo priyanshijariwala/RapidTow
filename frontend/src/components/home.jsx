@@ -19,15 +19,16 @@ import img_6 from "../image/rescuetruck_6.jpg"
 import Signin from './signin';
 import Signup from './signup';
 import Profile from './profile';
+import { useNavigate } from 'react-router-dom';
 
 function Home() {
-
+  const navigate = useNavigate()
 
   return (
     <>
       <div className='main'>
         <div className="box"></div>
-        <Navbar expand="lg" className="bg-body-tertiary navbar">
+        {/* <Navbar expand="lg" className="bg-body-tertiary navbar">
           <Container>
             <Navbar.Brand className='text-white' href="#home">RapidTow</Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -35,8 +36,8 @@ function Home() {
               <div style={{width : "100%"}} className='navlink'>
                 <Nav style={{width : "100%", color : "white"}} className="me-auto d-flex align-items-center justify-content-between w-100">
                   <div className='d-flex '>
-                    <Nav.Link className='text-white' to={<Home />}>Home</Nav.Link>
-                    <Nav.Link className='text-white' to={<Profile />}>Profile</Nav.Link>
+                    <Nav.Link className='text-white' onClick={() => navigate("/")}>Home</Nav.Link>
+                    <Nav.Link className='text-white' onClick={() => navigate("/Profile")}>Profile</Nav.Link>
                   </div>
                   <div className='d-flex'>
                     <Button variant="dark me-2">SignIn</Button>
@@ -46,7 +47,7 @@ function Home() {
               </div>
             </Navbar.Collapse>
           </Container>
-        </Navbar>
+        </Navbar> */}
         <div className="title">
           <h1>Welcome To RapidTow!</h1>
           <h3>RoadSide Rescuers:When you need Help,We're <bold>On The Way.</bold></h3>
