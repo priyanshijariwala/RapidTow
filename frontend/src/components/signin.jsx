@@ -12,8 +12,6 @@ import "../style.css";
 function Signin() {
   return (
     <>
-      <div className="main">
-        <div className="box"></div>
         <div className="signin">
           <Form className="form ">
             <h3>SIGN IN</h3>
@@ -50,7 +48,6 @@ function Signin() {
             </Form.Group>
           </Form>
         </div>
-      </div>
     </>
   );
 }
