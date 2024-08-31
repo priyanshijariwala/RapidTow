@@ -1,95 +1,62 @@
-import React from 'react'
-import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
-import Button from 'react-bootstrap/Button';
-import '../style.css';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import Card from 'react-bootstrap/Card';
-import Image from 'react-bootstrap/Image';
+import React from "react";
+
+import Button from "react-bootstrap/Button";
+import "../style.css";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import Card from "react-bootstrap/Card";
+import Image from "react-bootstrap/Image";
 // import { useState } from 'react';
 
-import img_1 from "../image/rescuetruck_1.jpg"
-import img_2 from "../image/rescuetruck_2.jpg"
-import img_3 from "../image/rescuetruck_3.jpg"
-import img_4 from "../image/rescuetruck_4.jpg"
-import img_5 from "../image/rescuetruck_5.jpg"
-import img_6 from "../image/rescuetruck_6.jpg"
-import Signin from './signin';
-import Signup from './signup';
-import Profile from './profile';
-import { useNavigate } from 'react-router-dom';
+import img_1 from "../image/rescuetruck_1.jpg";
+import img_2 from "../image/rescuetruck_2.jpg";
+import img_3 from "../image/rescuetruck_3.jpg";
+import img_4 from "../image/rescuetruck_4.jpg";
+import img_5 from "../image/rescuetruck_5.jpg";
+import img_6 from "../image/rescuetruck_6.jpg";
 
 function Home() {
-  const navigate = useNavigate()
-
   return (
     <>
-      <div className='main'>
-        <div className="box"></div>
-        {/* <Navbar expand="lg" className="bg-body-tertiary navbar">
-          <Container>
-            <Navbar.Brand className='text-white' href="#home">RapidTow</Navbar.Brand>
-            <Navbar.Toggle aria-controls="basic-navbar-nav" />
-            <Navbar.Collapse id="basic-navbar-nav">
-              <div style={{width : "100%"}} className='navlink'>
-                <Nav style={{width : "100%", color : "white"}} className="me-auto d-flex align-items-center justify-content-between w-100">
-                  <div className='d-flex '>
-                    <Nav.Link className='text-white' onClick={() => navigate("/")}>Home</Nav.Link>
-                    <Nav.Link className='text-white' onClick={() => navigate("/Profile")}>Profile</Nav.Link>
-                  </div>
-                  <div className='d-flex'>
-                    <Button variant="dark me-2">SignIn</Button>
-                    <Button variant="light">SignUp</Button>
-                  </div>
-                </Nav>
-              </div>
-            </Navbar.Collapse>
-          </Container>
-        </Navbar> */}
-        <div className="title">
-          <h1>Welcome To RapidTow!</h1>
-          <h3>RoadSide Rescuers:When you need Help,We're <bold>On The Way.</bold></h3>
-          <h5>We are a well-equipped towing service avialable to hep with towing your vehicle 24*7 We provide a fast,affordable,friendly and reliable towing service.</h5>
-
-
-        </div>
+      <div className="title">
+        <h1>Welcome To RapidTow!</h1>
+        <h3>
+          RoadSide Rescuers:When you need Help,We're <bold>On The Way.</bold>
+        </h3>
+        <h5>
+          We are a well-equipped towing service avialable to hep with towing
+          your vehicle 24*7 We provide a fast,affordable,friendly and reliable
+          towing service.
+        </h5>
       </div>
-      <div id='top-services'>
+      <div id="top-services">
         <h4>Top Services</h4>
-        <div className='d-flex align-items-center justify-content-center'>
-          <Row className='row '>
-            <Col className='col'>
-              <Card style={{ width: '18rem' }}>
+        <div className="d-flex align-items-center justify-content-center">
+          <Row className="row ">
+            <Col className="col">
+              <Card style={{ width: "18rem" }}>
                 <Card.Img variant="top" src={img_1} />
                 <Card.Body>
                   <Card.Title>Rescue Rangers</Card.Title>
-                  <Card.Text>
-                    Top rescue team for rescue.
-                  </Card.Text>
+                  <Card.Text>Top rescue team for rescue.</Card.Text>
                   <Button variant="primary">Book</Button>
                 </Card.Body>
               </Card>
             </Col>
-            <Col className='col'>
-              <Card style={{ width: '18rem' }}>
+            <Col className="col">
+              <Card style={{ width: "18rem" }}>
                 <Card.Img variant="top" src={img_2} />
                 <Card.Body>
                   <Card.Title>Emergency Tow</Card.Title>
-                  <Card.Text>
-                    Provide fastest Tow
-                  </Card.Text>
+                  <Card.Text>Provide fastest Tow</Card.Text>
                   <Button variant="primary">Book</Button>
                 </Card.Body>
               </Card>
             </Col>
-
           </Row>
-
         </div>
       </div>
-      <div id='local-provider'>
+      <div id="local-provider">
         <h4>Local Providers</h4>
         <Row>
           <Col xs={4} md={3}>
@@ -115,31 +82,31 @@ function Home() {
           </Col>
         </Row>
       </div>
-      <div id='services'>
+      <div id="services">
         <h4>Services</h4>
         <Row>
-          <Col >
-            <p className='service'>Tow</p>
+          <Col>
+            <p className="service">Tow</p>
           </Col>
-          <Col >
-            <p className='service'>Assist</p>
+          <Col>
+            <p className="service">Assist</p>
           </Col>
-          <Col >
-            <p className='service'>Help</p>
+          <Col>
+            <p className="service">Help</p>
           </Col>
-          <Col >
-            <p className='service'>Rescue</p>
+          <Col>
+            <p className="service">Rescue</p>
           </Col>
-          <Col >
-            <p className='service'>Support</p>
+          <Col>
+            <p className="service">Support</p>
           </Col>
-          <Col >
-            <p className='service'>6</p>
+          <Col>
+            <p className="service">6</p>
           </Col>
         </Row>
       </div>
     </>
-  )
+  );
 }
 
-export default Home
+export default Home;
