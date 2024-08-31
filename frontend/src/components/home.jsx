@@ -14,10 +14,6 @@ import img_3 from "../image/rescuetruck_3.jpg";
 import img_4 from "../image/rescuetruck_4.jpg";
 import img_5 from "../image/rescuetruck_5.jpg";
 import img_6 from "../image/rescuetruck_6.jpg";
-import Signin from "./signin";
-import Signup from "./signup";
-import Profile from "./profile";
-import { useNavigate } from "react-router-dom";
 
 function Home() {
   return (
