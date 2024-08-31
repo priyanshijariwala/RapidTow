@@ -17,27 +17,6 @@ function Signup() {
         <>
             <div className='main'>
                 <div className="box"></div>
-                <Navbar expand="lg" className="bg-body-tertiary navbar">
-                    <Container>
-
-                        <Navbar.Brand className='text-white' href="#home">RapidTow</Navbar.Brand>
-                        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                        <Navbar.Collapse id="basic-navbar-nav">
-                            <div style={{ width: "100%" }} className='navlink'>
-                                <Nav style={{ width: "100%", color: "white" }} className="me-auto d-flex align-items-center justify-content-between w-100">
-                                    <div className='d-flex '>
-                                        <Nav.Link className='text-white' href="#home">Home</Nav.Link>
-                                        <Nav.Link className='text-white' href="#profile">Profile</Nav.Link>
-                                    </div>
-                                    <div className='d-flex'>
-                                        <Button variant="dark me-2">SignIn</Button>
-                                        <Button variant="light">SignUp</Button>
-                                    </div>
-                                </Nav>
-                            </div>
-                        </Navbar.Collapse>
-                    </Container>
-                </Navbar>
                 <div className="signup">
 
                     <Form className='form signup_form'>
