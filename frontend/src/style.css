@@ -20,7 +20,7 @@
     top:0;
     z-index: 0;
 }
-.title,.signin,.signup{
+.title,.signin,.signup,.changepass{
     height:calc(100% - 70px);
     align-items: center;
     justify-content: center;
@@ -37,8 +37,6 @@
     background:rgb(231, 231, 230);
     /* border:1px solid black; */
     border-radius: 10px;
-    margin-left:100px;
-    margin-right: 100px;
     margin-bottom: 70px;
     padding-top: 20px;
 
@@ -59,7 +57,7 @@
     border-radius: 50px;
     height:40px
 }
-.form{
+.form,.glass{
     padding: 20px;
     border: 1px solid rgba(255,255,255,0.3);
     background: rgba(255,255,255,0.2);
@@ -71,3 +69,13 @@
     
 }
 
+.profile_nav span{
+    padding: 10px;
+    margin: 30px;
+    margin-top: 50px;
+    border:1px solid white;
+    border-radius: 5px;
+}
+.profile_nav{
+    margin-top: 30px;
+}

@@ -1,4 +1,3 @@
-
 const mongoose=require('mongoose');
 const {Schema}=mongoose;
 
@@ -19,12 +18,6 @@ const vehicleSchema=new Schema({
         type:Number,
         require:true,
     },
-    
-    // vehicle_model_name:{
-    //     type:String,
-    
-    //     require:true,
-    // },
     old_destination:{
         type:String,
         require:true,
