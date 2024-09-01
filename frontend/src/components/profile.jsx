@@ -8,7 +8,7 @@ import UserDetails from './UserDetails';
 import VehicleDetails from './VehicleDetails';
 import ChangePassword from './ChangePassword';
 import Help from './Help';
-import Feedback from 'react-bootstrap/esm/Feedback';
+import Feedback from './Feedback';
 
 function profile() {
   return (
