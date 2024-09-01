@@ -3,11 +3,17 @@ import Form from 'react-bootstrap/Form'
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 import Button from 'react-bootstrap/Button'
+import Profile from './profile'
 
 function VehicleDetails() {
   return (
     <>
-    <div>
+    <Profile/>
+    <Row>
+        <Col lg={2}></Col>
+        <Col lg={8}>
+        <div className='form'>
+        <div>
     <h4>VehicleDetails</h4>
     
     </div>
@@ -29,7 +35,12 @@ function VehicleDetails() {
               <Button type="submit">Edit</Button>
             </Col>
           </Form.Group>
-    </div>
+    </div>      
+        </div>
+        </Col>
+        <Col lg={2}></Col>
+      </Row>
+    
     </>
   )
 }

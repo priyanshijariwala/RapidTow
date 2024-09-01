@@ -1,9 +1,17 @@
 import React from 'react'
+import Profile from './profile'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
 
 function Help() {
   return (
     <>
-      <h4>Help Us</h4>
+    <Profile/>
+    <Row>
+        <Col lg={2}></Col>
+        <Col lg={8}>
+        <div className='form text-white'>
+        <h4>Help Us</h4>
       <h5>1.Welcome Message</h5>
       <p>Welcome to RapidTow Center! We're here to assist you with any questions or issues you may have.Please explore the options below to find the support you need.</p>
 
@@ -42,7 +50,12 @@ function Help() {
 
       <h5>6.additional resources</h5>
       <p>Jser Guides: [Link to user guides or tutorials]</p>
-      <p>Jpdates and Announcements: [Link to latest updates or news]</p>
+      <p>Jpdates and Announcements: [Link to latest updates or news]</p>    
+        </div>
+        </Col>
+        <Col lg={2}></Col>
+      </Row>
+      
     </>
   )
 }

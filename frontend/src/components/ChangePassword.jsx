@@ -3,12 +3,18 @@ import Form from 'react-bootstrap/Form';
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
+import Profile from './profile';
 
 
 function ChangePassword() {
   return (
     <>
-      <div >
+    <Profile/>
+    <Row>
+        <Col lg={2}></Col>
+        <Col lg={8}>
+        <div className='form'>
+        <div >
         <Form>
           <Row>
             <Col sm={4}>
@@ -45,7 +51,12 @@ function ChangePassword() {
             </Col>
           </Form.Group>
         </Form>
-      </div>
+      </div>    
+        </div>
+        </Col>
+        <Col lg={2}></Col>
+      </Row>
+      
     </>
   )
 }

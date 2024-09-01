@@ -3,11 +3,17 @@ import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
+import Profile from './profile';
 
 function Feedback() {
   return (
     <>
-    <div className="Feedback">
+    <Profile/>
+    <Row>
+        <Col lg={2}></Col>
+        <Col lg={8}>
+        <div className='form'>
+        <div className="Feedback">
       <h4>FEEDBACK</h4>
       <Form>
       <Row>
@@ -29,6 +35,11 @@ function Feedback() {
       </Form>
       
     </div>
+        </div>
+        </Col>
+        <Col lg={2}></Col>
+      </Row>
+    
     </>
   )
 }
