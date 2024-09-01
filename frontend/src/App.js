@@ -8,6 +8,7 @@ import VehicleDetails from "./components/VehicleDetails";
 import Help from './components/Help';
 import Feedback from './components/Feedback';
 import ChangePassword from './components/ChangePassword';
+import Admin_Signin from "./components/Admin_Signin";
 import "./App.css";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Header from "./components/Header";
@@ -33,6 +34,7 @@ function App() {
               <Route path='/ChangePassword' element={<ChangePassword />} />
               <Route path='/Help' element={<Help />} />
               <Route path='/Feedback' element={<Feedback />} />
+              <Route path='/Admin_Signin' element={<Admin_Signin />} />
             </Routes>
           </div>
         </div>

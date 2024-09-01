@@ -40,13 +40,14 @@ function Header() {
                 </div>
                 <div className="d-flex">
                   <Button
-                    variant="dark me-2"
-                    onClick={() => navigate("/SignIn")}
-                  >
+                    variant="dark me-2" onClick={() => navigate("/SignIn")}>
                     SignIn
                   </Button>
                   <Button variant="light" onClick={() => navigate("/SignUp")}>
                     SignUp
+                  </Button>
+                  <Button variant="light" onClick={() => navigate("/Admin_Signin")} style={{width:30,height:30,borderRadius:50,marginLeft:20}}>
+                    A
                   </Button>
                 </div>
               </Nav>
