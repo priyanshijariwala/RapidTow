@@ -21,8 +21,8 @@ router.post("/createuser", async (req, res) => {
         email: req.body.email,
         password: securepass,
         contact_no: req.body.contact_no,
-        fullname:req.body.fullname,
-        DOB:req.body.DOB,
+        fullname: req.body.fullname,
+        DOB: req.body.DOB,
       });
 
       const data = {
@@ -43,7 +43,7 @@ router.post("/createuser", async (req, res) => {
   }
 });
 
-router.get(
+router.post(
   "/login",
   [
     body("email", "enter a valid email").isEmail(),
@@ -55,15 +55,18 @@ router.get(
       return res.status(400).json({ errors: errors.array() });
     }
     const { email, password } = req.body;
+    let success = false
     try {
       let user = await User.findOne({ email });
       if (!user) {
+        success = false
         return res.status(400).json({ error: "User is not Exist" });
       }
 
       const passwordcompare = await bcrypt.compare(password, user.password);
       if (!passwordcompare) {
-       return res.status(400).json({ error: "Password incorrect.." });
+        success = false
+        return res.status(400).json({ error: "Password incorrect.." });
       }
 
       const data = {
@@ -72,8 +75,9 @@ router.get(
         },
       };
       const authtoken = jwt.sign(data, JWT_SECRET);
+      success = true
       // Send response to server
-      res.json(authtoken);
+      res.json({ success, authtoken });
     } catch (error) {
       console.error(error.message);
       res.status(500).send("Internal Server Error");
@@ -99,7 +103,7 @@ router.get("/getuser", fetchuser, async (req, res) => {
 router.put("/updateuser/:id", fetchuser, async (req, res) => {
 
   const {
-    username,email,password,fullname,contact_no,DOB
+    username, email, password, fullname, contact_no, DOB
   } = req.body;
 
   try {
@@ -109,9 +113,9 @@ router.put("/updateuser/:id", fetchuser, async (req, res) => {
     if (username) { updateuser.username = username; }
     if (email) { updateuser.email = email; }
     if (password) { updateuser.password = password; }
-    if (contact_no) { updateuser.contact_no =contact_no; }
-    if (fullname) { updateuser.fullname =fullname; }
-    if (DOB) { updateuser.DOB =DOB; }
+    if (contact_no) { updateuser.contact_no = contact_no; }
+    if (fullname) { updateuser.fullname = fullname; }
+    if (DOB) { updateuser.DOB = DOB; }
 
     let update_user = await User.findById(req.params.id);
     if (!update_user) {
@@ -132,19 +136,19 @@ router.put("/updateuser/:id", fetchuser, async (req, res) => {
 //delete user
 
 
-router.delete("/deleteuser/:id",fetchuser,async(req,res)=>{
-  try{
+router.delete("/deleteuser/:id", fetchuser, async (req, res) => {
+  try {
 
-    let delete_user=await User.findById(req.params.id);
-    if(!delete_user){
+    let delete_user = await User.findById(req.params.id);
+    if (!delete_user) {
       return res.status(404).send("Not Found");
     }
-    delete_user= await User.findByIdAndDelete(req.params.id);
-    res.json({"Success" : "deleted"})
-  }catch(error){
+    delete_user = await User.findByIdAndDelete(req.params.id);
+    res.json({ "Success": "deleted" })
+  } catch (error) {
     console.log(error);
   }
-  });
+});
 
 
 module.exports = router;
