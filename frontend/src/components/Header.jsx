@@ -4,6 +4,9 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { useNavigate } from "react-router-dom";
 import Button from "react-bootstrap/Button";
+import Image from "react-bootstrap/Image";
+import Black_logout from "../icon/black_logout.png";
+// import { IoLogOutOutline } from "react-icons/io5";
 function Header() {
   const navigate = useNavigate();
   return (
@@ -46,9 +49,13 @@ function Header() {
                   <Button variant="light" onClick={() => navigate("/SignUp")}>
                     SignUp
                   </Button>
-                  <Button variant="light" onClick={() => navigate("/Admin_Signin")} style={{width:30,height:30,borderRadius:50,marginLeft:20}}>
+                  <Button variant="light" onClick={() => navigate("/Admin_Signin")} style={{width:45,height:45,marginLeft:10,marginRight:10}}>
                     A
                   </Button>
+                  <Button variant="light" onClick={() => navigate("/Admin_Signin")} >
+                    <Image src={Black_logout} alt="Logout" style={{height:30,width:25}}/>
+                  </Button>
+                  
                 </div>
               </Nav>
             </div>

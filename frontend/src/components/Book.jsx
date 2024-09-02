@@ -3,6 +3,9 @@ import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
+import Image from "react-bootstrap/Image";
+import Black_update from "../icon/black_update.png";
+import Black_delete from "../icon/black_delete.png";
 
 import "../style.css";
 
@@ -13,7 +16,13 @@ function book() {
       <div style={{ height: "60px", backgroundColor: "transparent" }}></div>
       <div className="signup">
         <Form className="form signup_form">
-          <h3>SIGN UP</h3>
+          <h3>Book</h3>
+          <Button variant="light" >
+                    <Image src={Black_update} alt="Update" style={{height:30,width:25}}/>
+                  </Button>
+                  <Button variant="light"  >
+                    <Image src={Black_delete} alt="Delete" style={{height:30,width:25}}/>
+                  </Button>
           <Row>
             <Col sm={6}>
               <Form.Control type="text" placeholder="Vehicle_model_name" />
