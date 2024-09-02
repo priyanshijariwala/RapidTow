@@ -9,20 +9,18 @@ import Black_logout from "../icon/black_logout.png";
 
 function Header() {
   const navigate = useNavigate();
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [btnVis, setBtnVisible] = useState(true);
 
   useEffect(() => {
     // Check if the user is logged in by checking the token in localStorage
     const token = localStorage.getItem("car_tow_token");
-    setIsLoggedIn(!!token); // Update isLoggedIn state based on token existence
-  }, []); // Empty dependency array means this runs only once on component mount
+    setBtnVisible(!token); // If token exists, buttons should be invisible
+  }, [localStorage.getItem("car_tow_token")]); // Empty dependency array means this runs only once on component mount
 
-  const handleLogout = () => {
-    localStorage.removeItem("car_tow_token");
-    setIsLoggedIn(false); // Update state to reflect that the user is logged out
-    navigate("/signin");
-  };
-
+  const btnLogoutClicked = () => {
+    localStorage.removeItem("car_tow_token")
+    navigate("/signin")
+  }
   return (
     <Navbar
       expand="lg"
@@ -55,7 +53,7 @@ function Header() {
                 </Nav.Link>
               </div>
               <div className="d-flex">
-                {!isLoggedIn && (
+                {btnVis && (
                   <>
                     <Button
                       variant="dark me-2"
@@ -71,20 +69,18 @@ function Header() {
                     </Button>
                   </>
                 )}
-                {isLoggedIn && (
-                  <Button
-                    variant="light"
-                    onClick={handleLogout}
-                  >
-                    <Image src={Black_logout} alt="Logout" style={{ height: 30, width: 25 }} />
-                  </Button>
-                )}
                 <Button
                   variant="light"
                   onClick={() => navigate("/Admin_Signin")}
                   style={{ width: 45, height: 45, marginLeft: 10, marginRight: 10 }}
                 >
                   A
+                </Button>
+                <Button
+                  variant="light"
+                  onClick={btnLogoutClicked}
+                >
+                  <Image src={Black_logout} alt="Logout" style={{ height: 30, width: 25 }} />
                 </Button>
               </div>
             </Nav>
