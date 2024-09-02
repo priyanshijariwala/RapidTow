@@ -19,8 +19,10 @@ router.post("/createuser", async (req, res) => {
       user = await User.create({
         username: req.body.username,
         email: req.body.email,
-        contact_no: req.body.contact_no,
         password: securepass,
+        contact_no: req.body.contact_no,
+        fullname:req.body.fullname,
+        DOB:req.body.DOB,
       });
 
       const data = {
@@ -97,7 +99,7 @@ router.get("/getuser", fetchuser, async (req, res) => {
 router.put("/updateuser/:id", fetchuser, async (req, res) => {
 
   const {
-    username,email,contact_no,password
+    username,email,password,fullname,contact_no,DOB
   } = req.body;
 
   try {
@@ -106,8 +108,10 @@ router.put("/updateuser/:id", fetchuser, async (req, res) => {
 
     if (username) { updateuser.username = username; }
     if (email) { updateuser.email = email; }
-    if (contact_no) { updateuser.contact_no =contact_no; }
     if (password) { updateuser.password = password; }
+    if (contact_no) { updateuser.contact_no =contact_no; }
+    if (fullname) { updateuser.fullname =fullname; }
+    if (DOB) { updateuser.DOB =DOB; }
 
     let update_user = await User.findById(req.params.id);
     if (!update_user) {
