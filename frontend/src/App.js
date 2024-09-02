@@ -9,6 +9,7 @@ import Help from './components/Help';
 import Feedback from './components/Feedback';
 import ChangePassword from './components/ChangePassword';
 import Admin_Signin from "./components/Admin_Signin";
+import Admin_Home from "./components/Admin_Home"
 import "./App.css";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Header from "./components/Header";
@@ -35,6 +36,7 @@ function App() {
               <Route path='/Help' element={<Help />} />
               <Route path='/Feedback' element={<Feedback />} />
               <Route path='/Admin_Signin' element={<Admin_Signin />} />
+              <Route path='/Admin_Home' element={<Admin_Home />} />
             </Routes>
           </div>
         </div>
