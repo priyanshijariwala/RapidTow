@@ -47,7 +47,7 @@ function UserDetails() {
       console.error('Error fetching user details:', error);
     }
   };
-  
+
 
   useEffect(() => {
     handleLoad();
@@ -61,10 +61,10 @@ function UserDetails() {
         console.error('User ID is missing');
         return;
       }
-  
+
       const response = await fetch(`${host}/api/authentication/updateuser/${userDet._id}`, {
         method: 'PUT',
-        headers: { 'Content-Type': 'Application/json', "car_tow_token" : localStorage.getItem("car_tow_token") },
+        headers: { 'Content-Type': 'Application/json', "car_tow_token": localStorage.getItem("car_tow_token") },
         body: JSON.stringify({
           username: userDet.username,
           email: userDet.email,
@@ -75,17 +75,9 @@ function UserDetails() {
         })
       });
 
-  
-      // if (!response.ok) {
-        
-      //   const errorText = await response.text(); // Get error response as text
-      //   console.error('Error response:', errorText);
-      //   throw new Error(`HTTP error! Status: ${response.status}`);
-      // }
-  
       const json = await response.json();
       console.log(json);
-      
+
       if (json.authtoken) {
         localStorage.setItem('car_tow_token', json.authtoken);
       }
@@ -93,7 +85,30 @@ function UserDetails() {
       console.error('Error updating user details:', error);
     }
   };
-  
+
+  //delete user account
+
+  const handleDelete=async(e)=>{
+    if (!userDet._id) {
+      console.error('User ID is missing');
+      return;
+    }
+    const response=await fetch(`${host}/api/authentication/deleteuser/${userDet._id}`,{
+      method:"DELETE",
+      headers: { 'Content-Type': 'Application/json', "car_tow_token": localStorage.getItem("car_tow_token") }
+    });
+    if({response}){
+
+      setUserDet({
+        username: '',
+        email: '',
+        fullname: '',
+        contact_no: '',
+        DOB: ''})
+        
+      };
+  };
+
   return (
     <>
       <Profile />
@@ -108,7 +123,7 @@ function UserDetails() {
                   <Image src={Black_update} alt="Update" style={{ height: 30, width: 25 }} />
                 </Button>
                 <Button variant="light">
-                  <Image src={Black_delete} alt="Delete" style={{ height: 30, width: 25 }} />
+                  <Image src={Black_delete} alt="Delete" style={{ height: 30, width: 25 }} onClick={handleDelete}/>
                 </Button>
               </div>
               <div>
@@ -164,7 +179,7 @@ function UserDetails() {
 
                 <Form.Group as={Row} className="mb-3">
                   <Col sm={{ span: 10, offset: 1 }}>
-                    <Button type="submit">Edit</Button>
+                    <Button type="submit">Done</Button>
                   </Col>
                 </Form.Group>
               </div>
