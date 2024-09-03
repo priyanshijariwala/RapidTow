@@ -56,7 +56,8 @@ function Header() {
                 {btnVis && (
                   <>
                     <Button
-                      variant="dark me-2"
+                      variant="outline-light"
+                      style={{marginRight:5}}
                       onClick={() => navigate("/SignIn")}
                     >
                       SignIn
