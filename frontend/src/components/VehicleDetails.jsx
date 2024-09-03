@@ -12,10 +12,13 @@ function VehicleDetails() {
   const host = "http://localhost:5000";
 
   const [userDet, setUserDet] = useState({
+    _id: '',
     vehicle_model_name: '',
     vehicle_company_name: '',
     vehicle_number: ''
   });
+
+
 
   const handleLoad = async () => {
     try {
@@ -28,10 +31,11 @@ function VehicleDetails() {
       });
       const json = await response.json();
       console.log(json);
-  
+
       // Assuming json is an array and you want to set the first item
       if (Array.isArray(json) && json.length > 0) {
         setUserDet({
+          _id: json[0]._id || '',
           vehicle_model_name: json[0].vehicle_model_name || '',
           vehicle_company_name: json[0].vehicle_company_name || '',
           vehicle_number: json[0].vehicle_number || ''
@@ -48,11 +52,25 @@ function VehicleDetails() {
       console.error('Error fetching vehicle details:', error);
     }
   };
-  
-  
+
+
   useEffect(() => {
     handleLoad();
   }, []);
+
+  //update details
+
+  const handleSubmit= async(e)=>{
+    e.preventDefault();
+    const response=await fetch(`${host}/api/cartow/updatevehicle/${userDet._id}`,{
+      method:"PUT",
+      headers:{"Content-Type":"Application/json",
+        "car_tow_token":localStorage.getItem("car_tow_token")},
+        body:JSON.stringify({vehicle_model_name:userDet.vehicle_model_name,vehicle_company_name:userDet.vehicle_company_name,vehicle_number:userDet.vehicle_number})
+    });
+    const json= await response.json()
+    console.log(json)
+  }
 
   return (
     <>
@@ -60,6 +78,7 @@ function VehicleDetails() {
       <Row>
         <Col lg={2}></Col>
         <Col lg={8}>
+        <Form onSubmit={handleSubmit}>
           <div className='form'>
             <div>
               <h4>VehicleDetails</h4>
@@ -73,28 +92,28 @@ function VehicleDetails() {
             <div>
               <Row>
                 <Col sm={4}>
-                <Form.Control
-  type="text"
-  placeholder="Vehicle model name"
-  value={userDet.vehicle_model_name || ''}  // Ensure a default empty string
-  onChange={(e) => setUserDet({ ...userDet, vehicle_model_name: e.target.value })}
-/>
+                  <Form.Control
+                    type="text" name='vehicle_model_name' 
+                    placeholder="Vehicle model name"
+                    value={userDet.vehicle_model_name || ''}  // Ensure a default empty string
+                    onChange={(e) => setUserDet({ ...userDet, vehicle_model_name: e.target.value })}
+                  />
                 </Col>
                 <Col sm={4}>
-                <Form.Control
-  type="text"
-  placeholder="Vehicle company name"
-  value={userDet.vehicle_company_name || ''}  // Ensure a default empty string
-  onChange={(e) => setUserDet({ ...userDet, vehicle_company_name: e.target.value })}
-/>
+                  <Form.Control
+                    type="text" name='vehicle_company_name'
+                    placeholder="Vehicle company name"
+                    value={userDet.vehicle_company_name || ''}  // Ensure a default empty string
+                    onChange={(e) => setUserDet({ ...userDet, vehicle_company_name: e.target.value })}
+                  />
                 </Col>
                 <Col sm={4}>
-                <Form.Control
-  type="text"
-  placeholder="Vehicle number"
-  value={userDet.vehicle_number || ''}  // Ensure a default empty string
-  onChange={(e) => setUserDet({ ...userDet, vehicle_number: e.target.value })}
-/>
+                  <Form.Control
+                    type="text" name='vehicle_number'
+                    placeholder="Vehicle number"
+                    value={userDet.vehicle_number || ''}  // Ensure a default empty string
+                    onChange={(e) => setUserDet({ ...userDet, vehicle_number: e.target.value })}
+                  />
 
                 </Col>
               </Row>
@@ -106,6 +125,7 @@ function VehicleDetails() {
               </Form.Group>
             </div>
           </div>
+          </Form>
         </Col>
         <Col lg={2}></Col>
       </Row>

@@ -64,7 +64,7 @@ function UserDetails() {
   
       const response = await fetch(`${host}/api/authentication/updateuser/${userDet._id}`, {
         method: 'PUT',
-        headers: { 'Content-Type': 'Application/json' },
+        headers: { 'Content-Type': 'Application/json', "car_tow_token" : localStorage.getItem("car_tow_token") },
         body: JSON.stringify({
           username: userDet.username,
           email: userDet.email,
@@ -74,8 +74,6 @@ function UserDetails() {
           DOB: userDet.DOB
         })
       });
-      const json2 = await response.json()
-    console.log(json2)
 
   
       // if (!response.ok) {

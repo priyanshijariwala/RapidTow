@@ -89,7 +89,7 @@ router.get("/getuser", fetchuser, async (req, res) => {
   try {
     console.log(req.user)
     userId = req.user.id;
-    const user = await User.findById(userId).select("-password");
+    const user = await User.findById(userId);
     res.send(user);
   } catch (error) {
     console.error(error.message);
@@ -149,6 +149,40 @@ router.delete("/deleteuser/:id", fetchuser, async (req, res) => {
     console.log(error);
   }
 });
+router.put("/changepass/:id", fetchuser, async (req, res) => {
+  const { confirm_password, new_password } = req.body;
 
+  // Validate input
+  if (!confirm_password || !new_password) {
+    return res.status(400).json({ error: "Please provide both old and new passwords." });
+  }
+
+  try {
+    // Fetch the user from the database
+    const user = await User.findById(req.params.id);
+    if (!user) {
+      return res.status(404).json({ error: "User not found." });
+    }
+
+    // Compare the provided confirm_password with the user's current password
+    const passwordCompare = await bcrypt.compare(confirm_password, user.password);
+    if (!passwordCompare) {
+      return res.status(400).json({ error: "Old password is incorrect." });
+    }
+
+    // Hash the new password
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(new_password, salt);
+
+    // Update the user's password
+    user.password = hashedPassword;
+    await user.save();
+
+    res.json({ success: true, message: "Password changed successfully." });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Server error." });
+  }
+});
 
 module.exports = router;
