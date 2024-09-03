@@ -149,6 +149,7 @@ router.delete("/deleteuser/:id", fetchuser, async (req, res) => {
     console.log(error);
   }
 });
+
 router.put("/changepass/:id", fetchuser, async (req, res) => {
   const { confirm_password, new_password } = req.body;
 
