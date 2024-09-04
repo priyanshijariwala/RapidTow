@@ -84,7 +84,7 @@ router.post(
     }
   }
 );
-
+//get
 router.get("/getuser", fetchuser, async (req, res) => {
   try {
     console.log(req.user)
@@ -96,7 +96,17 @@ router.get("/getuser", fetchuser, async (req, res) => {
     return res.status(500).send("Internal Server Error");
   }
 });
-
+//getalluser
+router.get("/getuser", async (req, res) => {
+  try {
+    console.log(req.user)
+    const user = await User.find();
+    res.send(user);
+  } catch (error) {
+    console.error(error.message);
+    return res.status(500).send("Internal Server Error");
+  }
+});
 
 //updating user details
 

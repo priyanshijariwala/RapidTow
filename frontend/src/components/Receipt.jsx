@@ -41,12 +41,8 @@ function Receipt() {
       const json2 = await response2.json();
       console.log(json2);
 
-      // if (json && json._id) { // Check if _id exists
       setUserDet(json1);
       setVehicleDet(json2[json2.length-1]);
-      // } else {
-      // console.error('No user ID returned');
-      // }
     } catch (error) {
       console.error('Error fetching user details:', error);
     }

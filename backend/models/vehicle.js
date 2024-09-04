@@ -29,6 +29,9 @@ const vehicleSchema=new Schema({
     payment_mode:{
         type:String,
         require:true,
+    },
+    status:{
+        type:String
     }
 });
 const vehicle = mongoose.model('registration', vehicleSchema);
