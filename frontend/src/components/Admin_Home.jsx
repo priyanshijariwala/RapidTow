@@ -6,9 +6,9 @@ function Admin_Home() {
     return (
         <>
             <div>
-                <div className="form">
-                    <Table striped bordered hover>
-                        <thead>
+                <div>
+                    <Table striped bordered hover >
+                        {/* <thead>
                             <tr>
                                 <th>#</th>
                                 <th>Process</th>
@@ -50,7 +50,65 @@ function Admin_Home() {
                                 <td></td>
                             </tr>
 
-                        </tbody>
+                        </tbody> */}
+                        <tr>
+                            <td>Process</td>
+                            <td><Form.Check 
+                                    type="switch"
+                                    id="custom-switch"
+                                /></td>
+                        </tr>
+                        <tr>
+                            <td>Finish</td>
+                            <td><Form.Check 
+                                    type="switch"
+                                    id="custom-switch"
+                                /></td>
+                        </tr>
+                        <tr>
+                            <td>Username</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Email</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Fullname</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Contact</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>DOB</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Vehicle_Model_Name</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Vehicle_Company_Name</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Vehicle_number</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Old_destination</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>New_Destination</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Payment_mode</td>
+                            <td></td>
+                        </tr>
                     </Table>
                 </div>
             </div>

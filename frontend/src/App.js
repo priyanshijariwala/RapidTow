@@ -3,6 +3,7 @@ import Signin from "./components/signin";
 import Signup from "./components/signup";
 import Profile from "./components/profile";
 import Book from "./components/Book";
+import Receipt from "./components/Receipt";
 import UserDetails from "./components/UserDetails";
 import VehicleDetails from "./components/VehicleDetails";
 import Help from './components/Help';
@@ -30,6 +31,7 @@ function App() {
               <Route path="/SignUp" element={<Signup />} />
               <Route path="/Profile" element={<Profile />} />
               <Route path="/Book" element={<Book />} />
+              <Route path="/Receipt" element={<Receipt />} />
               <Route path='/UserDetails' element={<UserDetails />} />
               <Route path='/VehicleDetails' element={<VehicleDetails />} />
               <Route path='/ChangePassword' element={<ChangePassword />} />

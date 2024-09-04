@@ -52,8 +52,7 @@ function Book() {
     console.log(json)
 
     if (json) {
-      localStorage.setItem('car_tow_token', json);
-      navigate("/")
+      navigate("/Receipt")
     }
   }
 

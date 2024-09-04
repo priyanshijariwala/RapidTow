@@ -30,31 +30,8 @@ function VehicleDetails() {
         }
       });
       const json = await response.json();
-      console.log(json);
-
-      // Assuming json is an array and you want to set the first item
-      if (Array.isArray(json) && json.length > 0) {
-        if (json && json._id) {
-        setUserDet({
-          _id: json[0]._id || '',
-          vehicle_model_name: json[0].vehicle_model_name || '',
-          vehicle_company_name: json[0].vehicle_company_name || '',
-          vehicle_number: json[0].vehicle_number || ''
-        });}else{
-          setUserDet({
-            vehicle_model_name: '',
-            vehicle_company_name: '',
-            vehicle_number: ''
-          });
-        }
-      } else {
-        // Handle case where no vehicles are returned or json is not an array
-        setUserDet({
-          vehicle_model_name: '',
-          vehicle_company_name: '',
-          vehicle_number: ''
-        });
-      }
+      console.log(json[json.length - 1])
+      setUserDet(json[json.length - 1])
     } catch (error) {
       console.error('Error fetching vehicle details:', error);
     }
