@@ -25,11 +25,10 @@ function Admin_Home() {
   // Get data
   const handleLoad = async () => {
     try {
-      const response1 = await fetch(`${host}/api/authentication/getuser`, {
+      const response1 = await fetch(`${host}/api/authentication/getalluser`, {
         method: 'GET',
         headers: {
-          'Content-Type': 'Application/json',
-          'car_tow_token': localStorage.getItem('car_tow_token')
+          'Content-Type': 'Application/json'
         }
       });
       const json1 = await response1.json();

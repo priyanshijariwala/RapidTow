@@ -97,7 +97,7 @@ router.get("/getuser", fetchuser, async (req, res) => {
   }
 });
 //getalluser
-router.get("/getuser", async (req, res) => {
+router.get("/getalluser", async (req, res) => {
   try {
     console.log(req.user)
     const user = await User.find();
