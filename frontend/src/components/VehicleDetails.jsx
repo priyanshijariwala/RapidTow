@@ -7,6 +7,7 @@ import Profile from './profile';
 import Image from "react-bootstrap/Image";
 import Black_update from "../icon/black_update.png";
 import Black_delete from "../icon/black_delete.png";
+import { Navigate } from 'react-router-dom';
 
 function VehicleDetails() {
   const host = "http://localhost:5000";
@@ -130,6 +131,7 @@ function VehicleDetails() {
                     <Button type="submit">Edit</Button>
                   </Col>
                 </Form.Group>
+                <Button onClick={()=>{Navigate("/Receipt")}}>Receipt</Button>
               </div>
             </div>
           </Form>

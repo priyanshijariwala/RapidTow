@@ -19,7 +19,7 @@ router.get("/fetchallvehicle", fetchuser, async (req, res) => {
 
 router.get("/getallvehicle", async (req, res) => {
   try {
-    const vehicles = await vehicle.find();
+    const vehicles = await vehicle.find();//.populate('user_id'); 
     res.json(vehicles);
   } catch (error) {
     console.error(error.message);
@@ -37,6 +37,7 @@ router.post(
     body("old_destination", "Enter vehicle current destination"),
     body("new_destination", "Enter vehicle new destination"),
     body("payment_mode", "cash,cheque,GPay"),
+    body("status")
   ],
   async (req, res) => {
     try {
@@ -83,7 +84,7 @@ router.put("/updatevehicle/:id", fetchuser, async (req, res) => {
     new_destination,
     payment_mode,
   } = req.body;
- const status="Active"
+ const {status}="Active"
   try {
 
     const updatevehicle = {}
@@ -94,7 +95,8 @@ router.put("/updatevehicle/:id", fetchuser, async (req, res) => {
     if (old_destination) { updatevehicle.old_destination = old_destination; }
     if (new_destination) { updatevehicle.new_destination = new_destination; }
     if (payment_mode) { updatevehicle.payment_mode = payment_mode; }
-    updatevehicle.status="Active";
+    // if(status){updatevehicle.status="Finish";}
+    updatevehicle.status="Finish";
 
     let update_vehicle = await vehicle.findById(req.params.id);
     if (!update_vehicle) {

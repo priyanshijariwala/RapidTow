@@ -13,9 +13,11 @@ function Receipt() {
     email: ''
   });
   const [vehicleDet, setVehicleDet] = useState({
+    _id:'',
     vehicle_model_name: '',
     vehicle_company_name: '',
-    vehicle_number: ''
+    vehicle_number: '',
+    status:''
   })
 
   // Get data
@@ -51,6 +53,26 @@ function Receipt() {
     handleLoad();
   }, []);
 
+  //update status
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const response = await fetch(`${host}/api/cartow/updatevehicle/${vehicleDet._id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "Application/json",
+        "car_tow_token": localStorage.getItem("car_tow_token")
+      },
+      body: JSON.stringify({ status: "Finish" })
+    });
+    const json = await response.json()
+    console.log(json)
+
+    if(json){
+      navigate("/VehicleDetails");
+    }
+  }
+
   return (
     <>
       <Row className='text-white'>
@@ -66,7 +88,7 @@ function Receipt() {
           <p>Cost : 2000rs </p>
           <p><i>Press done after fulfill your request.</i></p>
           <hr />
-          <Button variant="outline-light" style={{ marginRight: 5 }} onClick={() => navigate("/")}>
+          <Button variant="outline-light" style={{ marginRight: 5 }} onClick={handleSubmit} >
             Done
           </Button>
         </Col>

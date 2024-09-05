@@ -74,7 +74,7 @@ body{
 
 .profile_nav span{
     padding: 10px;
-    margin: 30px;
+    margin: 5px;
     border:1px solid white;
     border-radius: 5px;
 }
@@ -92,4 +92,8 @@ body{
     max-width: fit-content;
     color: aliceblue;
     margin-bottom: 50px;
+}
+.admintable{
+    border: 2px solid white;
+    border-radius: 10px;
 }
