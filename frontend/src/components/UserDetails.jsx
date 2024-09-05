@@ -5,8 +5,8 @@ import Row from 'react-bootstrap/Row';
 import Button from 'react-bootstrap/Button';
 import Profile from './profile';
 import Image from "react-bootstrap/Image";
-import Black_update from "../icon/black_update.png";
-import Black_delete from "../icon/black_delete.png";
+import White_update from "../icon/white_update.png";
+import White_delete from "../icon/white_delete.png";
 
 function UserDetails() {
   const host = "http://localhost:5000";
@@ -109,6 +109,8 @@ function UserDetails() {
       };
   };
 
+ 
+
   return (
     <>
       <Profile />
@@ -119,11 +121,11 @@ function UserDetails() {
             <div className='form'>
               <div>
                 <h4>UserDetails</h4>
-                <Button variant="light">
-                  <Image src={Black_update} alt="Update" style={{ height: 30, width: 25 }} />
+                <Button variant='outline-light' style={{border:0}}>
+                  <Image src={White_update} alt="Update" style={{ height: 20, width: 20 }} />
                 </Button>
-                <Button variant="light">
-                  <Image src={Black_delete} alt="Delete" style={{ height: 30, width: 25 }} onClick={handleDelete}/>
+                <Button variant='outline-light' style={{border:0}}>
+                  <Image src={White_delete} alt="Delete" style={{ height: 20, width: 20 }} onClick={handleDelete} />
                 </Button>
               </div>
               <div>

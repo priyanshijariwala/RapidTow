@@ -57,13 +57,15 @@ function Header() {
                   <>
                     <Button
                       variant="outline-light"
-                      style={{marginRight:5}}
+                      style={{marginRight:5}} 
+                      hidden={localStorage.getItem("car_tow_token")?true:false}
                       onClick={() => navigate("/SignIn")}
                     >
                       SignIn
                     </Button>
                     <Button
-                      variant="light"
+                      variant="light" 
+                      hidden={localStorage.getItem("car_tow_token")?true:false}
                       onClick={() => navigate("/SignUp")}
                     >
                       SignUp
@@ -71,16 +73,7 @@ function Header() {
                   </>
                 )}
                 <Button
-                  variant="light"
-                  onClick={() => navigate("/Admin_Signin")}
-                  style={{ width: 45, height: 45, marginLeft: 10, marginRight: 10 }}
-                >
-                  A
-                </Button>
-                <Button
-                  variant="light"
-                  onClick={btnLogoutClicked}
-                >
+                  variant="light" hidden={localStorage.getItem("car_tow_token")?false:true} onClick={btnLogoutClicked}>
                   <Image src={Black_logout} alt="Logout" style={{ height: 30, width: 25 }} />
                 </Button>
               </div>

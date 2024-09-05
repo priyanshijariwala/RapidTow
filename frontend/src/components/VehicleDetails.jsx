@@ -5,8 +5,8 @@ import Row from 'react-bootstrap/Row';
 import Button from 'react-bootstrap/Button';
 import Profile from './profile';
 import Image from "react-bootstrap/Image";
-import Black_update from "../icon/black_update.png";
-import Black_delete from "../icon/black_delete.png";
+import White_update from "../icon/white_update.png";
+import White_delete from "../icon/white_delete.png";
 import { Navigate } from 'react-router-dom';
 
 function VehicleDetails() {
@@ -16,7 +16,9 @@ function VehicleDetails() {
     _id: '',
     vehicle_model_name: '',
     vehicle_company_name: '',
-    vehicle_number: ''
+    vehicle_number: '',
+    old_destination:'',
+    new_destination:''
   });
 
 
@@ -53,7 +55,7 @@ function VehicleDetails() {
         "Content-Type": "Application/json",
         "car_tow_token": localStorage.getItem("car_tow_token")
       },
-      body: JSON.stringify({ vehicle_model_name: userDet.vehicle_model_name, vehicle_company_name: userDet.vehicle_company_name, vehicle_number: userDet.vehicle_number })
+      body: JSON.stringify({ vehicle_model_name: userDet.vehicle_model_name, vehicle_company_name: userDet.vehicle_company_name, vehicle_number: userDet.vehicle_number,old_destination:userDet.old_destination,new_destination:userDet.new_destination })
     });
     const json = await response.json()
     console.log(json)
@@ -74,7 +76,9 @@ function VehicleDetails() {
       setUserDet({
         vehicle_model_name: '',
         vehicle_company_name: '',
-        vehicle_number: ''
+        vehicle_number: '',
+        old_destination:'',
+        new_destination:''
       })
 
     };
@@ -90,11 +94,11 @@ function VehicleDetails() {
             <div className='form'>
               <div>
                 <h4>VehicleDetails</h4>
-                <Button variant="light">
-                  <Image src={Black_update} alt="Update" style={{ height: 30, width: 25 }} />
+                <Button variant='outline-light' style={{border:0}}>
+                  <Image src={White_update} alt="Update" style={{ height: 20, width: 20 }} />
                 </Button>
-                <Button variant="light">
-                  <Image src={Black_delete} alt="Delete" style={{ height: 30, width: 25 }} onClick={handleDelete} />
+                <Button variant='outline-light' style={{border:0}}>
+                  <Image src={White_delete} alt="Delete" style={{ height: 20, width: 20 }} onClick={handleDelete} />
                 </Button>
               </div>
               <div>
@@ -123,6 +127,26 @@ function VehicleDetails() {
                       onChange={(e) => setUserDet({ ...userDet, vehicle_number: e.target.value })}
                     />
 
+                  </Col>
+                </Row>
+                <Row>
+                  <Col sm={6}>
+                    <Form.Control
+                      type="text"
+                      onChange={(e) => setUserDet({ ...userDet, old_destination: e.target.value })}
+                      placeholder="Old_Destination"
+                      name='old_destination'
+                      value={userDet.username}
+                    />
+                  </Col>
+                  <Col sm={6}>
+                    <Form.Control
+                      type="email"
+                      onChange={(e) => setUserDet({ ...userDet, new_destination: e.target.value })}
+                      placeholder="New_Destination"
+                      name='new_destination'
+                      value={userDet.email}
+                    />
                   </Col>
                 </Row>
 

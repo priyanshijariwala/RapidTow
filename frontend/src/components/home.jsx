@@ -44,7 +44,7 @@ function Home() {
                     <Card.Body>
                       <Card.Title>Rescue Rangers</Card.Title>
                       <Card.Text>Top rescue team for rescue.</Card.Text>
-                      <Button variant="primary" onClick={() => navigate("/Book")}>Book</Button>
+                      <Button variant="primary" disabled={localStorage.getItem("car_tow_token")?false:true} onClick={() => navigate("/Book")}>Book</Button>
                     </Card.Body>
                   </Card>
                 </Col>
@@ -54,7 +54,7 @@ function Home() {
                     <Card.Body>
                       <Card.Title>Emergency Tow</Card.Title>
                       <Card.Text>Provide fastest Tow</Card.Text>
-                      <Button variant="primary" onClick={() => navigate("/Book")}>Book</Button>
+                      <Button variant="primary" disabled={localStorage.getItem("car_tow_token")?false:true} onClick={() => navigate("/Book")}>Book</Button>
                     </Card.Body>
                   </Card>
                 </Col>

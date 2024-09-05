@@ -58,17 +58,10 @@ function Book() {
 
   return (
     <>
-      <p>booking on </p>
       <div style={{ height: "60px", backgroundColor: "transparent" }}></div>
       <div className="signup">
         <Form className="form signup_form" onSubmit={handleSubmit}>
           <h3>Book</h3>
-          <Button variant="light" >
-            <Image src={Black_update} alt="Update" style={{ height: 30, width: 25 }} />
-          </Button>
-          <Button variant="light"  >
-            <Image src={Black_delete} alt="Delete" style={{ height: 30, width: 25 }} />
-          </Button>
           <Row>
             <Col sm={6}>
               <Form.Control type="text" name="vehicle_model_name" onChange={handleModel} placeholder="Vehicle_model_name" />

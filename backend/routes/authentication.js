@@ -97,10 +97,10 @@ router.get("/getuser", fetchuser, async (req, res) => {
   }
 });
 //getalluser
-router.get("/getalluser", async (req, res) => {
+router.get("/getalluser/:id", async (req, res) => {
   try {
     console.log(req.user)
-    const user = await User.find();
+    const user = await User.findById(req.params.id);
     res.send(user);
   } catch (error) {
     console.error(error.message);
