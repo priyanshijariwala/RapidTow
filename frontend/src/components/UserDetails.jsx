@@ -11,6 +11,8 @@ import White_delete from "../icon/white_delete.png";
 function UserDetails() {
   const host = "http://localhost:5000";
 
+  const [vis,setBtnVisible]=useState(false);
+
   const [userDet, setUserDet] = useState({
     username: '',
     email: '',
@@ -122,7 +124,7 @@ function UserDetails() {
               <div>
                 <h4>UserDetails</h4>
                 <Button variant='outline-light' style={{border:0}}>
-                  <Image src={White_update} alt="Update" style={{ height: 20, width: 20 }} />
+                  <Image src={White_update} alt="Update" style={{ height: 20, width: 20 }} onClick={()=>{setBtnVisible(true)}}/>
                 </Button>
                 <Button variant='outline-light' style={{border:0}}>
                   <Image src={White_delete} alt="Delete" style={{ height: 20, width: 20 }} onClick={handleDelete} />
@@ -181,7 +183,7 @@ function UserDetails() {
 
                 <Form.Group as={Row} className="mb-3">
                   <Col sm={{ span: 10, offset: 1 }}>
-                    <Button type="submit">Done</Button>
+                    <Button type="submit" className={vis?'visible':'invisible'}>Done</Button>
                   </Col>
                 </Form.Group>
               </div>

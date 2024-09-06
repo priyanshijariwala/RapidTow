@@ -11,7 +11,7 @@ import { Navigate } from 'react-router-dom';
 
 function VehicleDetails() {
   const host = "http://localhost:5000";
-
+  const [vis,setBtnVisible]=useState(false);
   const [userDet, setUserDet] = useState({
     _id: '',
     vehicle_model_name: '',
@@ -95,7 +95,7 @@ function VehicleDetails() {
               <div>
                 <h4>VehicleDetails</h4>
                 <Button variant='outline-light' style={{border:0}}>
-                  <Image src={White_update} alt="Update" style={{ height: 20, width: 20 }} />
+                  <Image src={White_update} alt="Update" style={{ height: 20, width: 20 }} onClick={()=>{setBtnVisible(true)}}/>
                 </Button>
                 <Button variant='outline-light' style={{border:0}}>
                   <Image src={White_delete} alt="Delete" style={{ height: 20, width: 20 }} onClick={handleDelete} />
@@ -109,6 +109,7 @@ function VehicleDetails() {
                       placeholder="Vehicle model name"
                       value={userDet.vehicle_model_name || ''}  // Ensure a default empty string
                       onChange={(e) => setUserDet({ ...userDet, vehicle_model_name: e.target.value })}
+                      className={vis?'enable':'disable'}
                     />
                   </Col>
                   <Col sm={4}>
@@ -117,6 +118,7 @@ function VehicleDetails() {
                       placeholder="Vehicle company name"
                       value={userDet.vehicle_company_name || ''}  // Ensure a default empty string
                       onChange={(e) => setUserDet({ ...userDet, vehicle_company_name: e.target.value })}
+                      className={vis ? 'enable' : 'disable'}
                     />
                   </Col>
                   <Col sm={4}>
@@ -125,6 +127,7 @@ function VehicleDetails() {
                       placeholder="Vehicle number"
                       value={userDet.vehicle_number || ''}  // Ensure a default empty string
                       onChange={(e) => setUserDet({ ...userDet, vehicle_number: e.target.value })}
+                      className={vis?'enable':'disable'}
                     />
 
                   </Col>
@@ -137,6 +140,7 @@ function VehicleDetails() {
                       placeholder="Old_Destination"
                       name='old_destination'
                       value={userDet.username}
+                      className={vis?'enable':'disable'}
                     />
                   </Col>
                   <Col sm={6}>
@@ -146,13 +150,14 @@ function VehicleDetails() {
                       placeholder="New_Destination"
                       name='new_destination'
                       value={userDet.email}
+                      className={vis?'enable':'disable'}
                     />
                   </Col>
                 </Row>
 
                 <Form.Group as={Row} className="mb-3">
                   <Col sm={{ span: 10, offset: 1 }}>
-                    <Button type="submit">Edit</Button>
+                    <Button type="submit" className={vis?'visible':'invisible'}>Edit</Button>
                   </Col>
                 </Form.Group>
                 <Button onClick={()=>{Navigate("/Receipt")}}>Receipt</Button>
