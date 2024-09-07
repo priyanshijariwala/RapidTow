@@ -6,11 +6,9 @@ const { body, validationResult } = require("express-validator");
 
 
 router.post(
-  "/feedback",
+  "/give_feedback",
   fetchuser,
-  [
-    body("feedback", "Feedback cannot be empty").isLength({ min: 1 }),
-  ],
+  [body("feedback", "Feedback cannot be empty").isLength({ min: 1 })],
   async (req, res) => {
     try {
       const errors = validationResult(req);
@@ -32,3 +30,6 @@ router.post(
     }
   }
 );
+
+
+module.exports = router; 
