@@ -7,9 +7,10 @@ import Profile from './profile';
 import Image from "react-bootstrap/Image";
 import White_update from "../icon/white_update.png";
 import White_delete from "../icon/white_delete.png";
-import { Navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 function VehicleDetails() {
+  const navigate = useNavigate();
   const host = "http://localhost:5000";
   const [vis,setBtnVisible]=useState(false);
   const [userDet, setUserDet] = useState({
@@ -160,7 +161,7 @@ function VehicleDetails() {
                     <Button type="submit" className={vis?'visible':'invisible'}>Edit</Button>
                   </Col>
                 </Form.Group>
-                <Button onClick={()=>{Navigate("/Receipt")}}>Receipt</Button>
+                <Button onClick={()=>{navigate("/Receipt")}}>Receipt</Button>
               </div>
             </div>
           </Form>

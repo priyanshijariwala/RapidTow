@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useState} from 'react'
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
@@ -6,7 +6,28 @@ import Row from "react-bootstrap/Row";
 import Profile from './profile';
 
 function Feedback() {
-  
+  const host="http://localhost:5000";
+
+  const[feedback,setFeedback]=useState({'feedback':''})
+
+  const handleFeedback=async(e)=>{
+    setFeedback({'feedback':e.target.value});
+  }
+
+  const handleSubmit=async (e)=>{
+    e.preventDefault();
+    try{
+      const response=await fetch("http://localhost:5000/api/feedbacks/give_feedback",{
+        method:'POST',
+        headers:{'Content-Type':'Application/json','car_tow_token':localStorage.getItem('car_tow_token')},
+        body: JSON.stringify({ feedback: feedback.feedback })
+      });
+      const json = await response.json();
+      console.log(json);
+    }catch{
+      console.log("catch execute");
+    }
+  }
   return (
     <>
     <Profile/>
@@ -16,13 +37,13 @@ function Feedback() {
         <div className='form'>
         <div className="Feedback">
       <h4>FEEDBACK</h4>
-      <Form>
+      <Form onSubmit={handleSubmit}>
       <Row>
             <Col sm={3}>
               
             </Col>
             <Col sm={6}>
-              <Form.Control type="text" placeholder="You can tell us about your experiences" />
+              <Form.Control type="text" onChange={handleFeedback} placeholder="You can tell us about your experiences" />
             </Col>
             <Col sm={3}>
             </Col>

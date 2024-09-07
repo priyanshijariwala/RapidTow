@@ -52,54 +52,58 @@ function Signup() {
     const json = await response.json()
     console.log(json)
 
-    if (json) {
-      localStorage.setItem('car_tow_token', json); 
-      navigate("/")
+    if (response.status === 400 && json.error) {
+      alert(json.error); // Show error message to the user
+    } else {
+      localStorage.setItem('car_tow_token', json.token);
+      navigate("/");
     }
+  
   }
-
+  
   return (
     <>
-      <div style={{ height: "60px", backgroundColor: "transparent" }}></div>
-      <div className="signup">
-        <Form className="form signup_form" onSubmit={handleSubmit}>
-          <h3>SIGN UP</h3>
-          <Row>
-            <Col sm={6}>
-              <Form.Control type="text" placeholder="Username" name="username" onChange={handleUsername} />
-            </Col>
-            <Col sm={6}>
-              <Form.Control type="email" placeholder="Email" name="email" onChange={handleEmail} />
-            </Col>
-          </Row>
-          <Row>
-            <Col sm={6}>
-              <Form.Control type="password" placeholder="Password" name="password" onChange={handlePassword} />
-            </Col>
-            <Col sm={6}>
-              <Form.Control type="password" placeholder="Confirm Password" name="cpassword" onChange={handleCpassword} />
-            </Col>
-          </Row>
-          <Row>
-            <Col sm={4}>
-              <Form.Control type="text" placeholder="Fullname" name="fullname" onChange={handleFullname} />
-            </Col>
-            <Col sm={4}>
-              <Form.Control type="text" placeholder="Contact Number" name="contact_no" onChange={handleContact} />
-            </Col>
-            <Col sm={4}>
-              <Form.Control type="date" placeholder="DOB" name="DOB" onChange={handleDOB} />
-            </Col>
-          </Row>
+    <div style={{ height: "60px", backgroundColor: "transparent" }}></div>
+    <div className="signup">
+      <Form className="form signup_form" onSubmit={handleSubmit}>
+        <h3>SIGN UP</h3>
+        <Row>
+          <Col sm={6}>
+            <Form.Control type="text" placeholder="Username" name="username" onChange={handleUsername} />
+          </Col>
+          <Col sm={6}>
+            <Form.Control type="email" placeholder="Email" name="email" onChange={handleEmail} />
+          </Col>
+        </Row>
+        <Row>
+          <Col sm={6}>
+            <Form.Control type="password" placeholder="Password" name="password" onChange={handlePassword} />
+          </Col>
+          <Col sm={6}>
+            <Form.Control type="password" placeholder="Confirm Password" name="cpassword" onChange={handleCpassword} />
+          </Col>
+        </Row>
+        <Row>
+          <Col sm={4}>
+            <Form.Control type="text" placeholder="Fullname" name="fullname" onChange={handleFullname} />
+          </Col>
+          <Col sm={4}>
+            <Form.Control type="text" placeholder="Contact Number" name="contact_no" onChange={handleContact} />
+          </Col>
+          <Col sm={4}>
+            <Form.Control type="date" placeholder="DOB" name="DOB" onChange={handleDOB} />
+          </Col>
+        </Row>
 
-          <Form.Group as={Row} className="mb-3">
-            <Col sm={{ span: 10, offset: 1 }}>
-              <Button type="submit">Sign Up</Button>
-            </Col>
-          </Form.Group>
-        </Form>
-      </div>
-    </>
-  );
+        <Form.Group as={Row} className="mb-3">
+          <Col sm={{ span: 10, offset: 1 }}>
+            <Button type="submit">Sign Up</Button>
+          </Col>
+        </Form.Group>
+      </Form>
+    </div>
+  </>
+);
 }
+
 export default Signup;

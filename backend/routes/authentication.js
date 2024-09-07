@@ -35,11 +35,11 @@ router.post("/createuser", async (req, res) => {
       // Send response to server
       res.json(authtoken);
     } else {
-      res.status(400).json({ error: "Email is already used.." });
+      return res.status(400).json({ error: "Email is already used.." });
     }
   } catch (error) {
     console.error(error.message);
-    res.status(500).send("Internal Server Error");
+    return res.status(500).send("Internal Server Error");
   }
 });
 
