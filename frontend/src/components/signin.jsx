@@ -3,7 +3,8 @@ import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
-
+// import { ToastContainer, toast } from 'react-toastify';
+// import 'react-toastify/dist/ReactToastify.css';
 import "../style.css";
 import { useNavigate } from "react-router-dom";
 
@@ -38,8 +39,13 @@ function Signin() {
       console.log(json)
 
       if (json.success) {
+        // toast.success("Successfully Logged In !");
         localStorage.setItem('car_tow_token', json.authtoken);
         navigate("/")
+      }
+      else{
+        console.log("Error");
+        // toast.error("Error in Login");
       }
     }
   }
@@ -82,6 +88,7 @@ function Signin() {
           </Form.Group>
         </Form>
       </div>
+      {/* <ToastContainer /> */}
     </>
   );
 }
