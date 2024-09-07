@@ -6,6 +6,7 @@ import Row from "react-bootstrap/Row";
 import Profile from './profile';
 
 function Feedback() {
+
   return (
     <>
     <Profile/>

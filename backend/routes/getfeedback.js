@@ -30,4 +30,5 @@ router.post(
   }
 );
 
-module.exports = router; // Aa line ni lakehli te
+
+module.exports = router; 
