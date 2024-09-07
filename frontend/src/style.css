@@ -3,6 +3,9 @@
     z-index: 1;
     opacity: 1;
 }
+body{
+    background-color:#45474c;
+}
 .main{
     background-image: url("image/truck_logo.jpg");
     background-position: center center;
@@ -20,7 +23,7 @@
     top:0;
     z-index: 0;
 }
-.title,.signin,.signup{
+.title,.signin,.signup,.changepass{
     height:calc(100% - 70px);
     align-items: center;
     justify-content: center;
@@ -29,23 +32,21 @@
     color:white;
     position: relative;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif   ;
-    gap:20px;
-    padding:0 30px;
+    /* gap:20px; */
+    /* padding:0 30px; */
 }
 
 #top-services,#local-provider,#services{
     background:rgb(231, 231, 230);
     /* border:1px solid black; */
     border-radius: 10px;
-    margin-left:100px;
-    margin-right: 100px;
     margin-bottom: 70px;
     padding-top: 20px;
 
 }
 .row{
-    margin-bottom: 50px;
-    margin-top: 20px;
+    margin-bottom: 10px;
+    margin-top: 10px;
     padding: 20px;
     
 }
@@ -59,8 +60,8 @@
     border-radius: 50px;
     height:40px
 }
-.form{
-    padding: 20px;
+.form,.glass{
+    /* padding: 20px; */
     border: 1px solid rgba(255,255,255,0.3);
     background: rgba(255,255,255,0.2);
     border-radius: 10px;
@@ -71,3 +72,28 @@
     
 }
 
+.profile_nav span{
+    padding: 10px;
+    margin: 5px;
+    border:1px solid white;
+    border-radius: 5px;
+}
+.profile_nav{
+    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.row{
+    padding-right: 0px;
+    margin-right: 0px;
+}
+.table{
+    max-width: fit-content;
+    color: aliceblue;
+    margin-bottom: 50px;
+}
+.admintable{
+    border: 2px solid white;
+    border-radius: 10px;
+}

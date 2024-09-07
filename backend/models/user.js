@@ -12,11 +12,20 @@ const userSchema=new Schema({
         require:true,
         unique:true,
     },
+    
+    password:{
+        type:String,
+        require:true,
+    },
+    fullname:{
+        type:String,
+        require:true,
+    },
     contact_no:{
         type:Number,
         require:true,
     },
-    password:{
+    DOB:{
         type:String,
         require:true,
     }

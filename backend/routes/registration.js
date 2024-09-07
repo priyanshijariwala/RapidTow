@@ -4,11 +4,22 @@ const fetchuser = require("../middleware/fetchuser");
 const vehicle = require("../models/vehicle");
 const { body, validationResult } = require("express-validator");
 
-//get all vehicles data
+//get all vehicles data of same user
 //use for user registration history
 router.get("/fetchallvehicle", fetchuser, async (req, res) => {
   try {
     const vehicles = await vehicle.find({ user: req.user.id });
+    res.json(vehicles);
+  } catch (error) {
+    console.error(error.message);
+  }
+});
+
+//get all vehicle data of all user
+
+router.get("/getallvehicle", async (req, res) => {
+  try {
+    const vehicles = await vehicle.find();//.populate('user_id'); 
     res.json(vehicles);
   } catch (error) {
     console.error(error.message);
@@ -26,6 +37,7 @@ router.post(
     body("old_destination", "Enter vehicle current destination"),
     body("new_destination", "Enter vehicle new destination"),
     body("payment_mode", "cash,cheque,GPay"),
+    body("status")
   ],
   async (req, res) => {
     try {
@@ -37,6 +49,7 @@ router.post(
         new_destination,
         payment_mode,
       } = req.body;
+      const status="Active";
 
 
       const new_vehicle = new vehicle({
@@ -46,7 +59,8 @@ router.post(
         vehicle_number,
         old_destination,
         new_destination,
-        payment_mode
+        payment_mode,
+        status:status
       }
       );
 
@@ -70,7 +84,7 @@ router.put("/updatevehicle/:id", fetchuser, async (req, res) => {
     new_destination,
     payment_mode,
   } = req.body;
-
+ const {status}="Active"
   try {
 
     const updatevehicle = {}
@@ -81,6 +95,8 @@ router.put("/updatevehicle/:id", fetchuser, async (req, res) => {
     if (old_destination) { updatevehicle.old_destination = old_destination; }
     if (new_destination) { updatevehicle.new_destination = new_destination; }
     if (payment_mode) { updatevehicle.payment_mode = payment_mode; }
+    // if(status){updatevehicle.status="Finish";}
+    updatevehicle.status="Finish";
 
     let update_vehicle = await vehicle.findById(req.params.id);
     if (!update_vehicle) {

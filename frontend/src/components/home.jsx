@@ -7,6 +7,7 @@ import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
 import Image from "react-bootstrap/Image";
 // import { useState } from 'react';
+import { useNavigate } from "react-router-dom";
 
 import img_1 from "../image/rescuetruck_1.jpg";
 import img_2 from "../image/rescuetruck_2.jpg";
@@ -16,6 +17,7 @@ import img_5 from "../image/rescuetruck_5.jpg";
 import img_6 from "../image/rescuetruck_6.jpg";
 
 function Home() {
+  const navigate = useNavigate();
   return (
     <>
       <div className="title">
@@ -29,82 +31,102 @@ function Home() {
           towing service.
         </h5>
       </div>
-      <div id="top-services">
-        <h4>Top Services</h4>
-        <div className="d-flex align-items-center justify-content-center">
-          <Row className="row ">
-            <Col className="col">
-              <Card style={{ width: "18rem" }}>
-                <Card.Img variant="top" src={img_1} />
-                <Card.Body>
-                  <Card.Title>Rescue Rangers</Card.Title>
-                  <Card.Text>Top rescue team for rescue.</Card.Text>
-                  <Button variant="primary">Book</Button>
-                </Card.Body>
-              </Card>
-            </Col>
-            <Col className="col">
-              <Card style={{ width: "18rem" }}>
-                <Card.Img variant="top" src={img_2} />
-                <Card.Body>
-                  <Card.Title>Emergency Tow</Card.Title>
-                  <Card.Text>Provide fastest Tow</Card.Text>
-                  <Button variant="primary">Book</Button>
-                </Card.Body>
-              </Card>
-            </Col>
-          </Row>
-        </div>
-      </div>
-      <div id="local-provider">
-        <h4>Local Providers</h4>
-        <Row>
-          <Col xs={4} md={3}>
-            {/*  */}
-            <Image src={img_3} thumbnail />
-            <h6>Swift Tow</h6>
-            <p>Gear Garrage.</p>
-          </Col>
-          <Col xs={4} md={3}>
-            <Image src={img_4} thumbnail />
-            <h6>Road Rescuers</h6>
-            <p>Quick Fix Center. </p>
-          </Col>
-          <Col xs={4} md={3}>
-            <Image src={img_5} thumbnail />
-            <h6>Tow Titans</h6>
-            <p>Auto Depot.</p>
-          </Col>
-          <Col xs={4} md={3}>
-            <Image src={img_6} thumbnail />
-            <h6>Rescue Me</h6>
-            <p>Tow Zone.</p>
-          </Col>
-        </Row>
-      </div>
-      <div id="services">
-        <h4>Services</h4>
-        <Row>
-          <Col>
-            <p className="service">Tow</p>
-          </Col>
-          <Col>
-            <p className="service">Assist</p>
-          </Col>
-          <Col>
-            <p className="service">Help</p>
-          </Col>
-          <Col>
-            <p className="service">Rescue</p>
-          </Col>
-          <Col>
-            <p className="service">Support</p>
-          </Col>
-          <Col>
-            <p className="service">6</p>
-          </Col>
-        </Row>
-      </div>
+      <Row>
+        <Col lg={1}></Col>
+        <Col lg={10}>
+          <div id="top-services">
+            <h4>Top Services</h4>
+            <div className="d-flex align-items-center justify-content-center">
+              <Row className="row ">
+                <Col className="col">
+                  <Card style={{ width: "18rem" }}>
+                    <Card.Img variant="top" src={img_1} />
+                    <Card.Body>
+                      <Card.Title>Rescue Rangers</Card.Title>
+                      <Card.Text>Top rescue team for rescue.</Card.Text>
+                      <Button variant="primary" disabled={localStorage.getItem("car_tow_token")?false:true} onClick={() => navigate("/Book")}>Book</Button>
+                    </Card.Body>
+                  </Card>
+                </Col>
+                <Col className="col">
+                  <Card style={{ width: "18rem" }}>
+                    <Card.Img variant="top" src={img_2} />
+                    <Card.Body>
+                      <Card.Title>Emergency Tow</Card.Title>
+                      <Card.Text>Provide fastest Tow</Card.Text>
+                      <Button variant="primary" disabled={localStorage.getItem("car_tow_token")?false:true} onClick={() => navigate("/Book")}>Book</Button>
+                    </Card.Body>
+                  </Card>
+                </Col>
+              </Row>
+            </div>
+          </div>
+        </Col>
+        <Col lg={1}></Col>
+      </Row>
+      <Row>
+        <Col lg={1}></Col>
+        <Col lg={10}>
+          <div id="local-provider">
+
+            <h4>Local Providers</h4>
+            <Row>
+              <Col xs={4} md={3}>
+                <Image src={img_3} thumbnail />
+                <h6>Swift Tow</h6>
+                <p>Gear Garrage.</p>
+              </Col>
+              <Col xs={4} md={3}>
+                <Image src={img_4} thumbnail />
+                <h6>Road Rescuers</h6>
+                <p>Quick Fix Center. </p>
+              </Col>
+              <Col xs={4} md={3}>
+                <Image src={img_5} thumbnail />
+                <h6>Tow Titans</h6>
+                <p>Auto Depot.</p>
+              </Col>
+              <Col xs={4} md={3}>
+                <Image src={img_6} thumbnail />
+                <h6>Rescue Me</h6>
+                <p>Tow Zone.</p>
+              </Col>
+            </Row>
+          </div>
+        </Col>
+        <Col lg={10}></Col>
+      </Row>
+      <Row>
+        <Col lg={1}></Col>
+        <Col lg={10}>
+
+          <div id="services">
+            <h4>Services</h4>
+            <Row>
+              <Col>
+                <p className="service">Tow</p>
+              </Col>
+              <Col>
+                <p className="service">Assist</p>
+              </Col>
+              <Col>
+                <p className="service">Help</p>
+              </Col>
+              <Col>
+                <p className="service">Rescue</p>
+              </Col>
+              <Col>
+                <p className="service">Support</p>
+              </Col>
+              <Col>
+                <p className="service">6</p>
+              </Col>
+            </Row>
+          </div>
+        </Col>
+        <Col lg={1}></Col>
+
+      </Row>
     </>
   );
 }

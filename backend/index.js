@@ -10,7 +10,8 @@ app.use(cors());
 
 app.use(express.json());
 app.use("/api/authentication", require("./routes/authentication"));
-app.use("/api/cartow", require("./routes/registration")); // Aa line ni lakheli
+app.use("/api/cartow", require("./routes/registration")); 
+app.use("/api/feedbacks", require("./routes/getfeedback")); 
 
 app.get("/", (req, res) => {
   res.send("Hello guyses");
