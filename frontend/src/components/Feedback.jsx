@@ -4,10 +4,11 @@ import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Profile from './profile';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 function Feedback() {
   const host="http://localhost:5000";
-
+  const navi = useNavigate();
   const[feedback,setFeedback]=useState({'feedback':''})
 
   const handleFeedback=async(e)=>{
@@ -24,6 +25,7 @@ function Feedback() {
       });
       const json = await response.json();
       console.log(json);
+      navi("/")
     }catch{
       console.log("catch execute");
     }

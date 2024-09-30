@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const fetchuser = require("../middleware/fetchuser");
 const vehicle = require("../models/vehicle");
+const USER = require("../models/user")
 const { body, validationResult } = require("express-validator");
 
 //get all vehicles data of same user
@@ -23,6 +24,26 @@ router.get("/getallvehicle", async (req, res) => {
     res.json(vehicles);
   } catch (error) {
     console.error(error.message);
+  }
+});
+
+router.get("/getUserFromVehicle/:id", async (req, res) => {
+  try {
+    // Fetch the user by ID from the URL parameter
+    const user = await USER.findById(req.params.id);
+
+    // If no user is found, send a 404 response
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    // Send the found user data as a response
+    res.json(user);
+  } catch (error) {
+    console.error(error.message);
+
+    // Send a 500 response in case of server error
+    res.status(500).send("Server Error");
   }
 });
 
