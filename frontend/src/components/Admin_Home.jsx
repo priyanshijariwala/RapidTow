@@ -1,31 +1,56 @@
-import React, { useEffect, useState } from 'react';
-import Table from 'react-bootstrap/Table';
+import React, { useEffect, useState } from "react";
+import Table from "react-bootstrap/Table";
 
 function Admin_Home() {
   const host = "http://localhost:5000";
+  const [vehiclesWithUsers, setVehiclesWithUsers] = useState([]);
 
-  const [users, setUsers] = useState([]);
-  const [vehicleDetails, setVehicleDetails] = useState([]);
-  
-  // Get data
+  console.log(vehiclesWithUsers);
+  // Fetch vehicle and user data
   const handleLoad = async () => {
     try {
-      //fetch vehicle
+      // Fetch vehicle details
       const response2 = await fetch(`${host}/api/cartow/getallvehicle`, {
-        method: 'GET',
+        method: "GET",
         headers: {
-          'Content-Type': 'Application/json'
-        }
+          "Content-Type": "Application/json",
+        },
       });
       const vehiclesJson = await response2.json();
-      console.log("Vehicle Data: ", vehiclesJson); 
-      setVehicleDetails(vehiclesJson);
-      console.log(vehicleDetails._id)
-      
-      //fetch user
-      
+
+      // Fetch user details for each vehicle
+      const vehiclesWithUserDetails = await Promise.all(
+        vehiclesJson.map(async (vehicle) => {
+          try {
+            const response1 = await fetch(
+              `${host}/api/authentication/getalluser/${vehicle.user}`,
+              {
+                method: "GET",
+                headers: {
+                  "Content-Type": "Application/json",
+                },
+              }
+            );
+            const userJson = await response1.json();
+
+            // Return the vehicle with user details
+            return {
+              ...vehicle, // Spread vehicle details
+              user: userJson, // Attach user details
+            };
+          } catch (error) {
+            console.error(
+              `Error fetching user for vehicle ${vehicle._id}:`,
+              error
+            );
+            return { ...vehicle, user: null }; // Return vehicle without user details in case of error
+          }
+        })
+      );
+
+      setVehiclesWithUsers(vehiclesWithUserDetails);
     } catch (error) {
-      console.error('Error fetching user or vehicle details:', error);
+      console.error("Error fetching vehicle details:", error);
     }
   };
 
@@ -33,91 +58,73 @@ function Admin_Home() {
     handleLoad();
   }, []);
 
-  // // Find the user details by matching user_id
-  // const findUserById = (userId) => {
-  //   console.log("Matching userId:", userId); // Debug: Log the userId being searched
-  //   const user = users.find(user => vehicleDetails._id === userId); // Match by user_id
-  //   console.log("Found User: ", user); // Debug: Log the found user or undefined if not found
-  //   return user || {};
-  // };
-
   return (
-    <>
-      <div>
-        {vehicleDetails.map(async (vehicleDet, index) => {
-          // const user = findUserById(vehicleDetails.user_id);
-          
-          const response1 = await fetch(`${host}/api/authentication/getalluser/${vehicleDet._id}`, {
-            method: 'GET',
-            headers: {
-              'Content-Type': 'Application/json'
-            }
-          });
-          const usersJson = await response1.json();
-          return (
-            <div key={index}>
-              <h3>Booking {index + 1}</h3>
-              <Table className='admintable'>
-                <tbody>
-                  <tr>
-                    <td>Status</td>
-                    <td>{vehicleDet.status}</td>
-                  </tr>
-                  <tr>
-                    <td>ID</td>
-                    <td>{vehicleDet._id}</td>
-                  </tr>
-                  <tr>
-                    <td>Username</td>
-                    <td>{usersJson.username || 'Unknown'}</td>
-                  </tr>
-                  <tr>
-                    <td>Email</td>
-                    <td>{usersJson.email || 'Unknown'}</td>
-                  </tr>
-                  <tr>
-                    <td>Fullname</td>
-                    <td>{usersJson.fullname || 'Unknown'}</td>
-                  </tr>
-                  <tr>
-                    <td>Contact</td>
-                    <td>{usersJson.contact_no || 'Unknown'}</td>
-                  </tr>
-                  <tr>
-                    <td>DOB</td>
-                    <td>{usersJson.DOB || 'Unknown'}</td>
-                  </tr>
-                  <tr>
-                    <td>Vehicle Model Name</td>
-                    <td>{vehicleDet.vehicle_model_name}</td>
-                  </tr>
-                  <tr>
-                    <td>Vehicle Company Name</td>
-                    <td>{vehicleDet.vehicle_company_name}</td>
-                  </tr>
-                  <tr>
-                    <td>Vehicle Number</td>
-                    <td>{vehicleDet.vehicle_number}</td>
-                  </tr>
-                  <tr>
-                    <td>Old Destination</td>
-                    <td>{vehicleDet.old_destination}</td>
-                  </tr>
-                  <tr>
-                    <td>New Destination</td>
-                    <td>{vehicleDet.new_destination}</td>
-                  </tr>
-                  <tr>
-                    <td>Payment Mode</td>
-                    <td>{vehicleDet.payment_mode}</td>
-                  </tr>
-                </tbody>
-              </Table>
-            </div>
-          );
-        })}
+    <div>
+      <h3>Bookings</h3>
+      <div style={{ display: "flex", flexDirection: "row" }}>
+        {vehiclesWithUsers.map((vehicle, index) => (
+          <div>
+
+            <Table className="admintable me-4" key={vehicle._id}>
+              <tbody>
+                <tr>
+                  <td>Status</td>
+                  <td>{vehicle.status || "Unknown"}</td>
+                </tr>
+                <tr>
+                  <td>ID</td>
+                  <td>{vehicle._id}</td>
+                </tr>
+                <tr>
+                  <td>Username</td>
+                  <td>{vehicle.user?.username || "Unknown"}</td>
+                </tr>
+                <tr>
+                  <td>Email</td>
+                  <td>{vehicle.user?.email || "Unknown"}</td>
+                </tr>
+                <tr>
+                  <td>Fullname</td>
+                  <td>{vehicle.user?.fullname || "Unknown"}</td>
+                </tr>
+                <tr>
+                  <td>Contact</td>
+                  <td>{vehicle.user?.contact_no || "Unknown"}</td>
+                </tr>
+                <tr>
+                  <td>DOB</td>
+                  <td>{vehicle.user?.DOB || "Unknown"}</td>
+                </tr>
+                <tr>
+                  <td>Vehicle Model Name</td>
+                  <td>{vehicle.vehicle_model_name || "Unknown"}</td>
+                </tr>
+                <tr>
+                  <td>Vehicle Company Name</td>
+                  <td>{vehicle.vehicle_company_name || "Unknown"}</td>
+                </tr>
+                <tr>
+                  <td>Vehicle Number</td>
+                  <td>{vehicle.vehicle_number || "Unknown"}</td>
+                </tr>
+                <tr>
+                  <td>Old Destination</td>
+                  <td>{vehicle.old_destination || "Unknown"}</td>
+                </tr>
+                <tr>
+                  <td>New Destination</td>
+                  <td>{vehicle.new_destination || "Unknown"}</td>
+                </tr>
+                <tr>
+                  <td>Payment Mode</td>
+                  <td>{vehicle.payment_mode || "Unknown"}</td>
+                </tr>
+              </tbody>
+            </Table>
+          </div>
+        ))}
       </div>
-    </>
+    </div>
   );
 }
 

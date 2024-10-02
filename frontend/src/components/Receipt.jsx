@@ -69,7 +69,7 @@ function Receipt() {
     console.log(json)
 
     if(json){
-      navigate("/VehicleDetails");
+      navigate("/Feedback");
     }
   }
 

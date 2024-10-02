@@ -55,7 +55,8 @@ function Signup() {
     if (response.status === 400 && json.error) {
       alert(json.error); // Show error message to the user
     } else {
-      localStorage.setItem('car_tow_token', json.token);
+      console.log(json)
+      localStorage.setItem('car_tow_token', json);
       navigate("/");
     }
   
