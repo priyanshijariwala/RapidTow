@@ -5,7 +5,7 @@ import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Profile from './profile';
 import { Navigate, useNavigate } from 'react-router-dom';
-import BASE_URL from "../Services/Helper"
+import {BASE_URL} from "../Services/Helper"
 
 function Feedback() {
   const host=BASE_URL;

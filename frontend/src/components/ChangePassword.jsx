@@ -4,7 +4,7 @@ import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Profile from './profile';
-import BASE_URL from "../Services/Helper"
+import {BASE_URL} from "../Services/Helper"
 
 function ChangePassword() {
 

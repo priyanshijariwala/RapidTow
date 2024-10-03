@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { useFormik } from 'formik';
 import { loginSchema } from '../validation_schema';
 import { toast } from 'react-toastify';
-import BASE_URL from "../Services/Helper"
+import {BASE_URL} from "../Services/Helper"
 
 const initialValues = {
   email: "",
