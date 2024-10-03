@@ -118,9 +118,6 @@ function Home() {
               <Col>
                 <p className="service">Support</p>
               </Col>
-              <Col>
-                <p className="service">6</p>
-              </Col>
             </Row>
           </div>
         </Col>

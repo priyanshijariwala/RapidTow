@@ -6,6 +6,7 @@ function Admin_Home() {
   const [vehiclesWithUsers, setVehiclesWithUsers] = useState([]);
 
   console.log(vehiclesWithUsers);
+
   // Fetch vehicle and user data
   const handleLoad = async () => {
     try {
@@ -58,71 +59,133 @@ function Admin_Home() {
     handleLoad();
   }, []);
 
+  // Separate vehicles by status
+  const activeVehicles = vehiclesWithUsers.filter(
+    (vehicle) => vehicle.status === "Active"
+  );
+  const finishedVehicles = vehiclesWithUsers.filter(
+    (vehicle) => vehicle.status === "Finish"
+  );
+
+  const renderVehicleTable = (vehicles) =>
+    vehicles.map((vehicle) => (
+      <Table className="admintable" key={vehicle._id}>
+        <tbody>
+          <tr>
+            <td>Status</td>
+            <td>{vehicle.status || "Unknown"}</td>
+          </tr>
+          <tr>
+            <td>ID</td>
+            <td>{vehicle._id}</td>
+          </tr>
+          <tr>
+            <td>Username</td>
+            <td>{vehicle.user?.username || "Unknown"}</td>
+          </tr>
+          <tr>
+            <td>Email</td>
+            <td>{vehicle.user?.email || "Unknown"}</td>
+          </tr>
+          <tr>
+            <td>Fullname</td>
+            <td>{vehicle.user?.fullname || "Unknown"}</td>
+          </tr>
+          <tr>
+            <td>Contact</td>
+            <td>{vehicle.user?.contact_no || "Unknown"}</td>
+          </tr>
+          <tr>
+            <td>DOB</td>
+            <td>{vehicle.user?.DOB || "Unknown"}</td>
+          </tr>
+          <tr>
+            <td>Vehicle Model Name</td>
+            <td>{vehicle.vehicle_model_name || "Unknown"}</td>
+          </tr>
+          <tr>
+            <td>Vehicle Company Name</td>
+            <td>{vehicle.vehicle_company_name || "Unknown"}</td>
+          </tr>
+          <tr>
+            <td>Vehicle Number</td>
+            <td>{vehicle.vehicle_number || "Unknown"}</td>
+          </tr>
+          <tr>
+            <td>Old Destination</td>
+            <td>{vehicle.old_destination || "Unknown"}</td>
+          </tr>
+          <tr>
+            <td>New Destination</td>
+            <td>{vehicle.new_destination || "Unknown"}</td>
+          </tr>
+          <tr>
+            <td>Payment Mode</td>
+            <td>{vehicle.payment_mode || "Unknown"}</td>
+          </tr>
+        </tbody>
+      </Table>
+    ));
+
+    const renderFinishVehicleTable = (vehicles) =>
+      vehicles.map((vehicle) => (
+        <Table className="admintable" key={vehicle._id}>
+          <tbody>
+            <tr>
+              <td>Status</td>
+              <td>{vehicle.status || "Unknown"}</td>
+            </tr>
+            <tr>
+              <td>Email</td>
+              <td>{vehicle.user?.email || "Unknown"}</td>
+            </tr>
+            <tr>
+              <td>Fullname</td>
+              <td>{vehicle.user?.fullname || "Unknown"}</td>
+            </tr>
+            <tr>
+              <td>Contact</td>
+              <td>{vehicle.user?.contact_no || "Unknown"}</td>
+            </tr>
+            <tr>
+              <td>Vehicle Model Name</td>
+              <td>{vehicle.vehicle_model_name || "Unknown"}</td>
+            </tr>
+            <tr>
+              <td>Vehicle Number</td>
+              <td>{vehicle.vehicle_number || "Unknown"}</td>
+            </tr>
+            <tr>
+              <td>Payment Mode</td>
+              <td>{vehicle.payment_mode || "Unknown"}</td>
+            </tr>
+          </tbody>
+        </Table>
+      ));
+
   return (
     <div>
       <h3>Bookings</h3>
-      <div style={{ display: "flex", flexDirection: "row" }}>
-        {vehiclesWithUsers.map((vehicle, index) => (
-          <div>
+      <div style={{ display: "flex", justifyContent: "space-around" }}>
+        {/* Active Vehicles Section */}
+        <div>
+          <h4 style={{color : "white"}}>Active Vehicles</h4>
+          {activeVehicles.length > 0 ? (
+            renderVehicleTable(activeVehicles)
+          ) : (
+            <p className="mb-4" style={{color : "pink"}}>No active vehicles.</p>
+          )}
+        </div>
 
-            <Table className="admintable me-4" key={vehicle._id}>
-              <tbody>
-                <tr>
-                  <td>Status</td>
-                  <td>{vehicle.status || "Unknown"}</td>
-                </tr>
-                <tr>
-                  <td>ID</td>
-                  <td>{vehicle._id}</td>
-                </tr>
-                <tr>
-                  <td>Username</td>
-                  <td>{vehicle.user?.username || "Unknown"}</td>
-                </tr>
-                <tr>
-                  <td>Email</td>
-                  <td>{vehicle.user?.email || "Unknown"}</td>
-                </tr>
-                <tr>
-                  <td>Fullname</td>
-                  <td>{vehicle.user?.fullname || "Unknown"}</td>
-                </tr>
-                <tr>
-                  <td>Contact</td>
-                  <td>{vehicle.user?.contact_no || "Unknown"}</td>
-                </tr>
-                <tr>
-                  <td>DOB</td>
-                  <td>{vehicle.user?.DOB || "Unknown"}</td>
-                </tr>
-                <tr>
-                  <td>Vehicle Model Name</td>
-                  <td>{vehicle.vehicle_model_name || "Unknown"}</td>
-                </tr>
-                <tr>
-                  <td>Vehicle Company Name</td>
-                  <td>{vehicle.vehicle_company_name || "Unknown"}</td>
-                </tr>
-                <tr>
-                  <td>Vehicle Number</td>
-                  <td>{vehicle.vehicle_number || "Unknown"}</td>
-                </tr>
-                <tr>
-                  <td>Old Destination</td>
-                  <td>{vehicle.old_destination || "Unknown"}</td>
-                </tr>
-                <tr>
-                  <td>New Destination</td>
-                  <td>{vehicle.new_destination || "Unknown"}</td>
-                </tr>
-                <tr>
-                  <td>Payment Mode</td>
-                  <td>{vehicle.payment_mode || "Unknown"}</td>
-                </tr>
-              </tbody>
-            </Table>
-          </div>
-        ))}
+        {/* Finished Vehicles Section */}
+        <div>
+          <h4 className="mb-4" style={{color : "white"}}>Finished Vehicles</h4>
+          {finishedVehicles.length > 0 ? (
+            renderFinishVehicleTable(finishedVehicles)
+          ) : (
+            <p style={{color : "pink"}}>No finished vehicles.</p>
+          )}
+        </div>
       </div>
     </div>
   );

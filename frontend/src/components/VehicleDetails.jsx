@@ -22,8 +22,6 @@ function VehicleDetails() {
     new_destination:''
   });
 
-
-
   const handleLoad = async () => {
     try {
       const response = await fetch(`${host}/api/cartow/fetchallvehicle`, {
@@ -108,7 +106,7 @@ function VehicleDetails() {
                     <Form.Control
                       type="text" name='vehicle_model_name'
                       placeholder="Vehicle model name"
-                      value={userDet.vehicle_model_name || ''}  // Ensure a default empty string
+                      value={userDet?.vehicle_model_name || ''}  // Ensure a default empty string
                       onChange={(e) => setUserDet({ ...userDet, vehicle_model_name: e.target.value })}
                       className={vis?'enable':'disable'}
                     />
@@ -117,7 +115,7 @@ function VehicleDetails() {
                     <Form.Control
                       type="text" name='vehicle_company_name'
                       placeholder="Vehicle company name"
-                      value={userDet.vehicle_company_name || ''}  // Ensure a default empty string
+                      value={userDet?.vehicle_company_name || ''}  // Ensure a default empty string
                       onChange={(e) => setUserDet({ ...userDet, vehicle_company_name: e.target.value })}
                       className={vis ? 'enable' : 'disable'}
                     />
@@ -126,7 +124,7 @@ function VehicleDetails() {
                     <Form.Control
                       type="text" name='vehicle_number'
                       placeholder="Vehicle number"
-                      value={userDet.vehicle_number || ''}  // Ensure a default empty string
+                      value={userDet?.vehicle_number || ''}  // Ensure a default empty string
                       onChange={(e) => setUserDet({ ...userDet, vehicle_number: e.target.value })}
                       className={vis?'enable':'disable'}
                     />
@@ -140,7 +138,7 @@ function VehicleDetails() {
                       onChange={(e) => setUserDet({ ...userDet, old_destination: e.target.value })}
                       placeholder="Old_Destination"
                       name='old_destination'
-                      value={userDet.username}
+                      value={userDet?.old_destination}
                       className={vis?'enable':'disable'}
                     />
                   </Col>
@@ -150,7 +148,7 @@ function VehicleDetails() {
                       onChange={(e) => setUserDet({ ...userDet, new_destination: e.target.value })}
                       placeholder="New_Destination"
                       name='new_destination'
-                      value={userDet.email}
+                      value={userDet?.new_destination}
                       className={vis?'enable':'disable'}
                     />
                   </Col>
@@ -158,10 +156,9 @@ function VehicleDetails() {
 
                 <Form.Group as={Row} className="mb-3">
                   <Col sm={{ span: 10, offset: 1 }}>
-                    <Button type="submit" className={vis?'visible':'invisible'}>Edit</Button>
+                    <Button type="submit" className={vis?'':'disabled'}>Save Changes</Button>
                   </Col>
                 </Form.Group>
-                <Button onClick={()=>{navigate("/Receipt")}}>Receipt</Button>
               </div>
             </div>
           </Form>

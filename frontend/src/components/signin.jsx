@@ -3,92 +3,124 @@ import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
-// import { ToastContainer, toast } from 'react-toastify';
-// import 'react-toastify/dist/ReactToastify.css';
 import "../style.css";
 import { useNavigate } from "react-router-dom";
+import { useFormik } from 'formik';
+import { loginSchema } from '../validation_schema';
+import { toast } from 'react-toastify';
+
+const initialValues = {
+  email: "",
+  password: "",
+};
 
 function Signin() {
-  const navigate = useNavigate()
-  const host = "http://localhost:5000"
+  const navigate = useNavigate();
+  const host = "http://localhost:5000";
 
-  const [email, setEmail] = useState({ "email": "" })
-  const [password, setPassword] = useState({ "password": "" })
+  const { values, errors, handleBlur, handleChange, handleSubmit } = useFormik({
+    initialValues: initialValues,
+    validationSchema: loginSchema,
+    onSubmit: async (values, action) => {
+      try {
+        if (
+          values.email === "admin@gmail.com" &&
+          values.password === "admin@123"
+        ) {
+          console.log("If execute");
+          navigate("/Admin_Home");
+        }
 
-  const handleEmail = async (e) => {
-    setEmail({ email: e.target.value })
-  }
-  const handlePassword = async (e) => {
-    setPassword({ password: e.target.value })
-  }
+        const response = await fetch(`${host}/api/authentication/login`, {
+          method: "POST",
+          headers: { "Content-Type": "Application/json" },
+          body: JSON.stringify({
+            email: values.email,
+            password: values.password,
+          }),
+        });
+        const json = await response.json();
+        console.log(json)
+        if (json.success) {
+          localStorage.setItem("car_tow_token", json.authtoken);
+          toast.success("Successfully Logged In !",{
+            position : "top-center"
+          });
+          navigate("/");
+        } else {
+          toast.error(`${json.error}`, {
+            position: "bottom-left",
+          });
+        }
+      } catch (error) {
+        console.error("Error occurred:", error.response.data.error);
+        toast.error(`${error.response.data.error}`, {
+          position: "bottom-left",
+        });
+      }
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    
-    if (email.email==='admin@gmail.com' && password.password === 'admin@123') {
-      console.log("If execute");
-      navigate("/Admin_Home");
-    }
-    else {
-      const response = await fetch(`${host}/api/authentication/login`, {
-        method: "POST",
-        headers: { "Content-Type": "Application/json" },
-        body: JSON.stringify({ email: email.email, password: password.password })
+      action.resetForm();
+    },
+  });
+
+  const errorMessage = Object.values(errors);
+
+  const showToastMessage = () => {
+    if (!localStorage.getItem("car_tow_token")) {
+      errorMessage.map((er) => {
+        toast.warning(`${er}`, {
+          position: "bottom-left",
+        });
       });
-      const json = await response.json()
-      console.log(json)
-
-      if (json.success) {
-        // toast.success("Successfully Logged In !");
-        localStorage.setItem('car_tow_token', json.authtoken);
-        navigate("/")
-      }
-      else{
-        console.log("Error");
-        // toast.error("Error in Login");
-      }
     }
-  }
+  };
 
   return (
     <>
       <div className="signin">
         <Form className="form " onSubmit={handleSubmit}>
-          <h3>SIGN IN</h3>
-          <Form.Group
-            as={Row}
-            className="mb-3"
-            controlId="formHorizontalEmail"
-          >
+          <h3 className="mt-3">SIGN IN</h3>
+          <Form.Group as={Row} controlId="formHorizontalEmail">
             <Form.Label column sm={3} className="form-label">
               Email
             </Form.Label>
             <Col sm={12}>
-              <Form.Control type="email" placeholder="Email" name="email" onChange={handleEmail} />
+              <Form.Control
+                type="email"
+                id="email"
+                value={values.email}
+                placeholder="Email"
+                name="email"
+                onChange={handleChange}
+                onBlur={handleBlur}
+              />
             </Col>
           </Form.Group>
 
-          <Form.Group
-            as={Row}
-            className="mb-3"
-            controlId="formHorizontalPassword"
-          >
+          <Form.Group as={Row} controlId="formHorizontalPassword">
             <Form.Label column sm={3} className="form-label">
               Password
             </Form.Label>
             <Col sm={12}>
-              <Form.Control type="password" placeholder="Password" name="password" onChange={handlePassword} />
+              <Form.Control
+                type="password"
+                placeholder="Password"
+                name="password"
+                id="password"
+                value={values.password}
+                onBlur={handleBlur}
+                onChange={handleChange}
+              />
             </Col>
           </Form.Group>
 
           <Form.Group as={Row} className="mb-3">
             <Col sm={{ span: 10, offset: 1 }}>
-              <Button type="submit">Sign in</Button>
+              <Button type="submit" onClick={showToastMessage}>Sign in</Button>
             </Col>
           </Form.Group>
         </Form>
       </div>
-      {/* <ToastContainer /> */}
     </>
   );
 }
