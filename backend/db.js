@@ -1,15 +1,23 @@
 const mongoose=require('mongoose');
-const url="mongodb://localhost:27017/cartow";
-// const url="mongodb+srv://priyanshi1jariwala:<prps22452245>@cluster0.pekprfq.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
 
+const dotenv = require("dotenv");
 
-async function connectToMongo(){
-    try{
-        await mongoose.connect(url);
-        console.log("Connected to mongodb");
+dotenv.config();
+
+// const url="mongodb://localhost:27017/cartow";
+// const url="mongodb+srv://priyanshi1jariwala:prps22452245@cluster0.pekprfq.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+
+const dbURI = process.env.DATABASE;
+
+const connectToMongo = async () => {
+    try {
+      await mongoose.connect(dbURI, {
+        serverSelectionTimeoutMS: 30000, // 30 seconds
+      });
+      console.log("Connected to MongoDB successfully...");
+    } catch (e) {
+      console.error("Error connecting to MongoDB:", e);
     }
-    catch(error){
-        console.log("Error in connecting : ",error);
-    }
-}
-module.exports = connectToMongo
+  };
+  
+  module.exports = connectToMongo;
