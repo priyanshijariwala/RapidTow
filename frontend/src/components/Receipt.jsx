@@ -3,10 +3,11 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Button from 'react-bootstrap/esm/Button'
 import { useNavigate } from 'react-router-dom'
+import BASE_URL from "../Services/Helper"
 
 function Receipt() {
   const navigate = useNavigate()
-  const host = "http://localhost:5000";
+  const host = BASE_URL;
 
   const [userDet, setUserDet] = useState({
     username: '',

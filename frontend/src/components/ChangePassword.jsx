@@ -4,10 +4,11 @@ import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Profile from './profile';
+import BASE_URL from "../Services/Helper"
 
 function ChangePassword() {
 
-  const host = "http://localhost:5000";
+  const host = BASE_URL;
 
   // User Data 
   const [userDet, setUserDet] = useState({});

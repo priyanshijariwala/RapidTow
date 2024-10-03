@@ -7,9 +7,10 @@ import Profile from './profile';
 import Image from "react-bootstrap/Image";
 import White_update from "../icon/white_update.png";
 import White_delete from "../icon/white_delete.png";
+import { BASE_URL } from '../Services/Helper';
 
 function UserDetails() {
-  const host = "http://localhost:5000";
+  const host = BASE_URL;
 
   const [vis,setBtnVisible]=useState(false);
 
