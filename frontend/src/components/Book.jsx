@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import { createVehicleSchema } from "../validation_schema";
 import { toast } from "react-toastify";
+import BASE_URL from "../Services/Helper"
 
 import "../style.css";
 
@@ -21,7 +22,7 @@ const initialValues = {
 
 function Book() {
   const navigate = useNavigate();
-  const host = "http://localhost:5000";
+  const host = BASE_URL;
 
   const { values, errors, handleBlur, handleChange, handleSubmit } = useFormik({
     initialValues: initialValues,

@@ -5,9 +5,10 @@ import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Profile from './profile';
 import { Navigate, useNavigate } from 'react-router-dom';
+import BASE_URL from "../Services/Helper"
 
 function Feedback() {
-  const host="http://localhost:5000";
+  const host=BASE_URL;
   const navi = useNavigate();
   const[feedback,setFeedback]=useState({'feedback':''})
 
@@ -18,7 +19,7 @@ function Feedback() {
   const handleSubmit=async (e)=>{
     e.preventDefault();
     try{
-      const response=await fetch("http://localhost:5000/api/feedbacks/give_feedback",{
+      const response=await fetch(`${host}/api/feedbacks/give_feedback`,{
         method:'POST',
         headers:{'Content-Type':'Application/json','car_tow_token':localStorage.getItem('car_tow_token')},
         body: JSON.stringify({ feedback: feedback.feedback })

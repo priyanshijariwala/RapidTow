@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { useFormik } from 'formik';
 import { loginSchema } from '../validation_schema';
 import { toast } from 'react-toastify';
+import BASE_URL from "../Services/Helper"
 
 const initialValues = {
   email: "",
@@ -16,7 +17,7 @@ const initialValues = {
 
 function Signin() {
   const navigate = useNavigate();
-  const host = "http://localhost:5000";
+  const host = BASE_URL;
 
   const { values, errors, handleBlur, handleChange, handleSubmit } = useFormik({
     initialValues: initialValues,

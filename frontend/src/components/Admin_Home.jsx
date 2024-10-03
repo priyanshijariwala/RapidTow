@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import Table from "react-bootstrap/Table";
+import BASE_URL from "../Services/Helper"
 
 function Admin_Home() {
-  const host = "http://localhost:5000";
+  const host = BASE_URL;
   const [vehiclesWithUsers, setVehiclesWithUsers] = useState([]);
 
   console.log(vehiclesWithUsers);

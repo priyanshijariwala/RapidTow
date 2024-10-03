@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Image from "react-bootstrap/Image";
 import Black_logout from "../icon/black_logout.png";
+import BASE_URL from "../Services/Helper"
 
 function Header() {
   const navigate = useNavigate();
