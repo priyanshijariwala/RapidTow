@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Table from "react-bootstrap/Table";
-import BASE_URL from "../Services/Helper"
+import {BASE_URL} from "../Services/Helper"
 
 function Admin_Home() {
   const host = BASE_URL;
