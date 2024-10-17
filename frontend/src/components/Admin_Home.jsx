@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
 import Table from "react-bootstrap/Table";
-import {BASE_URL} from "../Services/Helper"
+import { BASE_URL } from "../Services/Helper";
+import "./adminstyle.css";  // Custom CSS file
 
 function Admin_Home() {
   const host = BASE_URL;
   const [vehiclesWithUsers, setVehiclesWithUsers] = useState([]);
 
-  console.log(vehiclesWithUsers);
-
   // Fetch vehicle and user data
+
   const handleLoad = async () => {
     try {
       // Fetch vehicle details
@@ -70,7 +70,7 @@ function Admin_Home() {
 
   const renderVehicleTable = (vehicles) =>
     vehicles.map((vehicle) => (
-      <Table className="admintable" key={vehicle._id}>
+      <Table className="admintable" key={vehicle._id} striped bordered hover>
         <tbody>
           <tr>
             <td>Status</td>
@@ -128,63 +128,63 @@ function Admin_Home() {
       </Table>
     ));
 
-    const renderFinishVehicleTable = (vehicles) =>
-      vehicles.map((vehicle) => (
-        <Table className="admintable" key={vehicle._id}>
-          <tbody>
-            <tr>
-              <td>Status</td>
-              <td>{vehicle.status || "Unknown"}</td>
-            </tr>
-            <tr>
-              <td>Email</td>
-              <td>{vehicle.user?.email || "Unknown"}</td>
-            </tr>
-            <tr>
-              <td>Fullname</td>
-              <td>{vehicle.user?.fullname || "Unknown"}</td>
-            </tr>
-            <tr>
-              <td>Contact</td>
-              <td>{vehicle.user?.contact_no || "Unknown"}</td>
-            </tr>
-            <tr>
-              <td>Vehicle Model Name</td>
-              <td>{vehicle.vehicle_model_name || "Unknown"}</td>
-            </tr>
-            <tr>
-              <td>Vehicle Number</td>
-              <td>{vehicle.vehicle_number || "Unknown"}</td>
-            </tr>
-            <tr>
-              <td>Payment Mode</td>
-              <td>{vehicle.payment_mode || "Unknown"}</td>
-            </tr>
-          </tbody>
-        </Table>
-      ));
+  const renderFinishVehicleTable = (vehicles) =>
+    vehicles.map((vehicle) => (
+      <Table className="admintable" key={vehicle._id} striped bordered hover>
+        <tbody>
+          <tr>
+            <td>Status</td>
+            <td>{vehicle.status || "Unknown"}</td>
+          </tr>
+          <tr>
+            <td>Email</td>
+            <td>{vehicle.user?.email || "Unknown"}</td>
+          </tr>
+          <tr>
+            <td>Fullname</td>
+            <td>{vehicle.user?.fullname || "Unknown"}</td>
+          </tr>
+          <tr>
+            <td>Contact</td>
+            <td>{vehicle.user?.contact_no || "Unknown"}</td>
+          </tr>
+          <tr>
+            <td>Vehicle Model Name</td>
+            <td>{vehicle.vehicle_model_name || "Unknown"}</td>
+          </tr>
+          <tr>
+            <td>Vehicle Number</td>
+            <td>{vehicle.vehicle_number || "Unknown"}</td>
+          </tr>
+          <tr>
+            <td>Payment Mode</td>
+            <td>{vehicle.payment_mode || "Unknown"}</td>
+          </tr>
+        </tbody>
+      </Table>
+    ));
 
   return (
-    <div>
-      <h3>Bookings</h3>
-      <div style={{ display: "flex", justifyContent: "space-around" }}>
+    <div className="admin-home">
+      <h3 className="section-title">Bookings Overview</h3>
+      <div className="vehicle-sections">
         {/* Active Vehicles Section */}
-        <div>
-          <h4 style={{color : "white"}}>Active Vehicles</h4>
+        <div className="vehicle-section">
+          <h4 className="subsection-title">Active Vehicles</h4>
           {activeVehicles.length > 0 ? (
             renderVehicleTable(activeVehicles)
           ) : (
-            <p className="mb-4" style={{color : "pink"}}>No active vehicles.</p>
+            <p className="no-vehicles">No active vehicles.</p>
           )}
         </div>
 
         {/* Finished Vehicles Section */}
-        <div>
-          <h4 className="mb-4" style={{color : "white"}}>Finished Vehicles</h4>
+        <div className="vehicle-section">
+          <h4 className="subsection-title">Finished Vehicles</h4>
           {finishedVehicles.length > 0 ? (
             renderFinishVehicleTable(finishedVehicles)
           ) : (
-            <p style={{color : "pink"}}>No finished vehicles.</p>
+            <p className="no-vehicles">No finished vehicles.</p>
           )}
         </div>
       </div>

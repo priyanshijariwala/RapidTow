@@ -1,0 +1,90 @@
+.admin-home {
+  padding: 20px;
+  background-color: #f4f4f9;
+}
+
+.section-title {
+  text-align: center;
+  color: #343a40;
+  margin-bottom: 40px;
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+.vehicle-sections {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.vehicle-section {
+  background-color: #343a40;
+  padding: 20px;
+  border-radius: 10px;
+  width: 45%;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center content horizontally */
+}
+
+.subsection-title {
+  color: #ffffff;
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+}
+
+.admintable {
+  margin-top: 10px;
+  background-color: #ffffff;
+  border-radius: 10px; /* Rounded corners for tables */
+  overflow: hidden; /* Ensures the rounded corners are visible */
+  width: 100%; /* Full width */
+  max-width: 600px; /* Limit max-width */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add subtle shadow */
+}
+
+.admintable tbody tr:nth-child(even) {
+  background-color: #f8f9fa; /* Light background for even rows */
+}
+
+.admintable tbody tr:nth-child(odd) {
+  background-color: #ffffff; /* White background for odd rows */
+}
+
+.admintable td, .admintable th {
+  color: #343a40; /* Dark text color */
+  padding: 12px 15px;
+  border: 1px solid #dee2e6;
+  text-align: left;
+}
+
+.admintable th {
+  background-color: #6c757d; /* Header background color */
+  color: #ffffff; /* Header text color */
+  text-align: center; /* Center align header text */
+}
+
+.no-vehicles {
+  color: #ff4d4d;
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.vehicle-section h4 {
+  text-align: center;
+  font-size: 1.5rem;
+  color: #ffffff;
+}
+
+@media (max-width: 768px) {
+  .vehicle-section {
+    width: 100%;
+  }
+
+  .admintable {
+    width: 100%;
+  }
+}
