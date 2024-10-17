@@ -24,11 +24,13 @@ function Signup() {
   const navigate = useNavigate();
   const host = BASE_URL;
 
+  const [btnDisable, setBtnDisable] = useState(false)
   const { values, errors, handleBlur, handleChange, handleSubmit } = useFormik({
     initialValues: initialValues,
     validationSchema: signupSchema,
     onSubmit: async (values, action) => {
       try {
+        setBtnDisable(true)
         if (
           values.email === "admin@gmail.com" &&
           values.password === "admin@123"
@@ -68,6 +70,8 @@ function Signup() {
         toast.error(`${error.response.data.error}`, {
           position: "bottom-left",
         });
+      }finally{
+        setBtnDisable(false)
       }
 
       action.resetForm();
@@ -174,7 +178,7 @@ function Signup() {
 
           <Form.Group as={Row} className="mb-3">
             <Col sm={{ span: 10, offset: 1 }}>
-              <Button type="submit" onClick={showToastMessage}>
+              <Button type="submit" disabled={btnDisable} onClick={showToastMessage}>
                 Sign Up
               </Button>
             </Col>
