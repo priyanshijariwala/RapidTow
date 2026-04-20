@@ -28,6 +28,10 @@ const userSchema=new Schema({
     DOB:{
         type:String,
         require:true,
+    },
+    image: {
+        type: String,
+        default: null
     }
 });
 const User = mongoose.model('user', userSchema);

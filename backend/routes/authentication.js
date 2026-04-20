@@ -6,40 +6,80 @@ const jwt = require("jsonwebtoken");
 const JWT_SECRET = process.env.JWT_SECRET;
 const { body, validationResult } = require("express-validator");
 const fetchuser = require("../middleware/fetchuser");
+const multer = require("multer");
+const path = require("path");
 
-router.post("/createuser", async (req, res) => {
+// ✅ MULTER CONFIG
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, "uploads/");
+  },
+  filename: (req, file, cb) => {
+    cb(null, Date.now() + path.extname(file.originalname));
+  }
+});
+
+const upload = multer({ storage });
+
+// ============================
+// ✅ CREATE USER WITH IMAGE
+// ============================
+router.post("/createuser", upload.single("image"), async (req, res) => {
   try {
-    // Check if user already exists
     let user = await User.findOne({ email: req.body.email });
-    if (!user) {
-      const salt = await bcrypt.genSalt(10);
-      const securepass = await bcrypt.hash(req.body.password, salt);
 
-      // Create new user
-      user = await User.create({
-        username: req.body.username,
-        email: req.body.email,
-        password: securepass,
-        contact_no: req.body.contact_no,
-        fullname: req.body.fullname,
-        DOB: req.body.DOB,
-      });
-
-      const data = {
-        user: {
-          id: user.id,
-        },
-      };
-
-      const authtoken = jwt.sign(data, JWT_SECRET);
-      // Send response to server
-      res.json(authtoken);
-    } else {
+    if (user) {
       return res.status(400).json({ error: "Email is already used.." });
     }
+
+    const salt = await bcrypt.genSalt(10);
+    const securepass = await bcrypt.hash(req.body.password, salt);
+
+    user = await User.create({
+      username: req.body.username,
+      email: req.body.email,
+      password: securepass,
+      contact_no: req.body.contact_no,
+      fullname: req.body.fullname,
+      DOB: req.body.DOB,
+      image: req.file ? req.file.path : null // ✅ IMAGE
+    });
+
+    const data = {
+      user: { id: user.id }
+    };
+
+    const authtoken = jwt.sign(data, JWT_SECRET);
+    res.json({ authtoken });
+
   } catch (error) {
     console.error(error.message);
-    return res.status(500).send("Internal Server Error");
+    res.status(500).send("Internal Server Error");
+  }
+});
+
+// ============================
+// ✅ UPLOAD PROFILE IMAGE (SEPARATE ROUTE)
+// ============================
+router.post("/uploadprofile/:id", upload.single("image"), async (req, res) => {
+  try {
+    let user = await User.findById(req.params.id);
+
+    if (!user) {
+      return res.status(404).send("User not found");
+    }
+
+    user.image = req.file.path;
+    await user.save();
+
+    res.json({
+      success: true,
+      image: req.file.path
+    });
+
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Server Error");
   }
 });
 
